@@ -82,7 +82,7 @@ Links
 
 By default, stories that link to external websites have that external
 URL in <link>. If you'd rather have <link> point to the story's
-comment page, provide "?link=comments" as a GET parameter:
+comment page, provide "link=comments" as a GET parameter:
 
   /feeds/firehose.xml?link=comments
 

@@ -76,7 +76,16 @@ To limit results, use the "points" and/or "comments" filter(s):
   This works for all feeds except /feeds/comments.xml.
 
 You can provide one, or both, and they'll be ANDed together.
-  
+
+Links
+-----
+
+By default, stories that link to external websites have that external
+URL in <link>. If you'd rather have <link> point to the story's
+comment page, provide "?link=comments" as a GET parameter:
+
+  /feeds/firehose.xml?link=comments
+
 Examples
 --------
 

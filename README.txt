@@ -7,6 +7,8 @@ on Hacker News.
 Feeds
 -----
 
+hnrss provides the following feeds:
+
 * /feeds/firehose.xml
 
   Contains all 'stories' sorted by age descending. A 'story' is all
@@ -54,6 +56,8 @@ Feeds
   
 Filters
 -------
+
+To limit results, use the "points" and/or "comments" filters:
 
 * Points
 

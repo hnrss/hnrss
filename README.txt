@@ -4,11 +4,6 @@ hnrss
 hnrss generates RSS feeds for new posts (and comments) as they appear
 on Hacker News.
 
-It's available at http://hnrss.org/ and powered by Algolia, the
-official Hacker News API provider [1].
-
-[1] https://news.ycombinator.com/item?id=7547578
-
 Feeds
 -----
 
@@ -86,3 +81,10 @@ Examples
 - http://hnrss.org/feeds/comments?points=25
 - http://hnrss.org/author/pg.xml
 - http://hnrss.org/search.xml?query=Django
+
+Credits
+-------
+
+hnrss is powered by Algolia, the official Hacker News API provider [1].
+
+[1] https://news.ycombinator.com/item?id=7547578

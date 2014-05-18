@@ -57,7 +57,7 @@ hnrss provides the following feeds:
 Filters
 -------
 
-To limit results, use the "points" and/or "comments" filters:
+To limit results, use the "points" and/or "comments" filter(s):
 
 * Points
 
@@ -89,6 +89,7 @@ Examples
 Credits
 -------
 
-hnrss is powered by Algolia, the official Hacker News API provider [1].
+hnrss is powered by Algolia (https://hn.algolia.com/api), the official
+Hacker News API provider [1].
 
 [1] https://news.ycombinator.com/item?id=7547578

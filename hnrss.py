@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 import time
-import json
-import logging
 import requests
 from flask import Flask, request, make_response
 from lxml import etree

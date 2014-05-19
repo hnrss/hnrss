@@ -50,7 +50,7 @@ def generate_rss(request, response, title):
     add_element(rss_channel, 'link', 'https://news.ycombinator.com/')
     add_element(rss_channel, 'description', 'Hacker News RSS')
     add_element(rss_channel, 'docs', 'http://cyber.law.harvard.edu/rss/rss.html')
-    add_element(rss_channel, 'generator', 'hnrss.py (https://github.com/edavis/hnrss)')
+    add_element(rss_channel, 'generator', 'https://github.com/edavis/hnrss')
     add_element(rss_channel, 'lastBuildDate', generate_rfc2822())
 
     for hit in response.json()['hits']:

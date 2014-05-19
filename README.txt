@@ -4,6 +4,17 @@ hnrss
 hnrss generates RSS feeds for new posts (and comments) as they appear
 on Hacker News.
 
+It can be found at http://hnrss.org/
+
+Examples
+--------
+
+- http://hnrss.org/feeds/firehose.xml
+- http://hnrss.org/feeds/askhn.xml?comments=20
+- http://hnrss.org/feeds/comments?points=25
+- http://hnrss.org/author/pg.xml
+- http://hnrss.org/search.xml?query=Django
+
 Feeds
 -----
 
@@ -102,15 +113,6 @@ To include comments and Ask/Show HN headlines in a <title> element,
 pass "usetitles=1" in your request:
 
   /feeds/comments.xml?points=10&usetitles=1
-
-Examples
---------
-
-- http://hnrss.org/feeds/firehose.xml
-- http://hnrss.org/feeds/askhn.xml?comments=20
-- http://hnrss.org/feeds/comments?points=25
-- http://hnrss.org/author/pg.xml
-- http://hnrss.org/search.xml?query=Django
 
 Credits
 -------

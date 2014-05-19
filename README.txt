@@ -102,15 +102,14 @@ comment page, provide "link=comments" as a GET parameter:
 Titles
 ------
 
-Comments and self-posts (i.e., Ask/Show HN, polls) without body text
-don't have "titles" in the traditional sense.
+Comments don't have "titles" in the traditional sense.
 
-hnrss handles this by including this information in a single
-<description> element without a <title>. This adheres to the RSS
-specification, but can cause problems with some feed readers.
+hnrss handles this by including comments in the <description>
+element. This adheres to the RSS specification, but can cause problems
+with some feed readers.
 
-To include comments and Ask/Show HN headlines in a <title> element,
-pass "usetitles=1" in your request:
+To include comments in a <title> element, pass "usetitles=1" in your
+request:
 
   /feeds/comments.xml?points=10&usetitles=1
 

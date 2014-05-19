@@ -65,11 +65,12 @@ def generate_rss(request, response, title):
 
         rss_item = etree.SubElement(rss_channel, 'item')
 
-        if hit.get('title') and hit.get('story_text'):
+        if hit.get('title'):
             add_element(rss_item, 'title', hit.get('title'))
+
+        if hit.get('story_text'):
             add_element(rss_item, 'description', hit.get('story_text'))
-        elif hit.get('title') and not hit.get('story_text'):
-            _handle_usetitles(request, rss_item, hit.get('title'))
+
         elif hit.get('comment_text'):
             _handle_usetitles(request, rss_item, hit.get('comment_text'))
 

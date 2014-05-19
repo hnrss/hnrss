@@ -157,7 +157,7 @@ def search():
 @app.route('/')
 @app.route('/feeds/')
 def index():
-    return redirect('https://github.com/edavis/hnrss#readme')
+    return redirect('https://github.com/edavis/hnrss')
 
 if __name__ == '__main__':
     app.run(debug=True)

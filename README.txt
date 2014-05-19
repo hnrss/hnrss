@@ -18,24 +18,24 @@ Feeds
 
 hnrss provides the following feeds:
 
-* /feeds/firehose.xml
+* http://hnrss.org/feeds/firehose.xml
 
   Contains all 'stories' sorted by age descending. A 'story' is all
   regular articles, 'Ask HN' and 'Show HN' posts, and polls.
 
-* /feeds/askhn.xml
+* http://hnrss.org/feeds/askhn.xml
 
   Like the firehose feed, but only with 'Ask HN' posts.
 
-* /feeds/showhn.xml
+* http://hnrss.org/feeds/showhn.xml
 
   Like the firehose feed, but only with 'Show HN' posts.
 
-* /feeds/polls.xml
+* http://hnrss.org/feeds/polls.xml
 
   Like the firehose feed, but only with polls.
 
-* /feeds/comments.xml
+* http://hnrss.org/feeds/comments.xml
 
   Contains all comments posted throughout Hacker News sorted by age
   descending.
@@ -47,7 +47,7 @@ hnrss provides the following feeds:
 
   The ID is the number after "?id=" on an article's comment page.
 
-* /feeds/author/<username>.xml
+* http://hnrss.org/feeds/author/<username>.xml
 
   Returns all stories and comments by a given username.
 
@@ -56,7 +56,7 @@ hnrss provides the following feeds:
 
     /feeds/author/edavis.xml?only=comments # or "stories"
 
-* /feeds/search.xml?query=TERM
+* http://hnrss.org/feeds/search.xml?query=TERM
 
   Full-text search with results sorted by age descending.
 

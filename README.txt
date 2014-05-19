@@ -102,8 +102,8 @@ comment page, provide "link=comments" as a GET parameter:
 Titles
 ------
 
-Comments and Ask/Show HN posts without body text don't have "titles"
-in the traditional sense.
+Comments and self-posts (i.e., Ask/Show HN, polls) without body text
+don't have "titles" in the traditional sense.
 
 hnrss handles this by including this information in a single
 <description> element without a <title>. This adheres to the RSS

@@ -53,6 +53,12 @@ def generate_rss(request, response, title):
     add_element(rss_channel, 'generator', 'https://github.com/edavis/hnrss')
     add_element(rss_channel, 'lastBuildDate', generate_rfc2822())
 
+    def _handle_usetitles(request, parent, text):
+        if request.args.get('usetitles'):
+            add_element(parent, 'title', text)
+        else:
+            add_element(parent, 'description', text)
+
     for hit in response.json()['hits']:
         hn_url = 'https://news.ycombinator.com/item?id=%s' % hit['objectID']
         tags = hit.get('_tags', [])
@@ -63,9 +69,9 @@ def generate_rss(request, response, title):
             add_element(rss_item, 'title', hit.get('title'))
             add_element(rss_item, 'description', hit.get('story_text'))
         elif hit.get('title') and not hit.get('story_text'):
-            add_element(rss_item, 'description', hit.get('title'))
+            _handle_usetitles(request, rss_item, hit.get('title'))
         elif hit.get('comment_text'):
-            add_element(rss_item, 'description', hit.get('comment_text'))
+            _handle_usetitles(request, rss_item, hit.get('comment_text'))
 
         add_element(rss_item, 'pubDate', generate_rfc2822(hit.get('created_at_i')))
 

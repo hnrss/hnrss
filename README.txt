@@ -88,6 +88,21 @@ comment page, provide "link=comments" as a GET parameter:
 
   /feeds/firehose.xml?link=comments
 
+Titles
+------
+
+Comments and Ask/Show HN posts without body text don't have "titles"
+in the traditional sense.
+
+hnrss handles this by including this information in a single
+<description> element without a <title>. This adheres to the RSS
+specification, but can cause problems with some feed readers.
+
+To include comments and Ask/Show HN headlines in a <title> element,
+pass "usetitles=1" in your request:
+
+  /feeds/comments.xml?points=10&usetitles=1
+
 Examples
 --------
 

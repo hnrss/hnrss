@@ -11,7 +11,7 @@ Examples
 
 - http://hnrss.org/feeds/firehose.xml
 - http://hnrss.org/feeds/askhn.xml?comments=20
-- http://hnrss.org/feeds/comments?points=25
+- http://hnrss.org/feeds/comments.xml?points=25
 - http://hnrss.org/author/pg.xml
 - http://hnrss.org/search.xml?query=Django
 

@@ -52,7 +52,9 @@ hnrss provides the following feeds:
   Full-text search with results sorted by age descending.
 
   By default, results only include stories. To include both stories
-  and comments, pass "?all=1".
+  and comments, pass "?all=1":
+
+    /feeds/search.xml?query=Django&all=1
   
 Filters
 -------

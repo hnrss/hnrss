@@ -73,10 +73,12 @@ def generate_rss(request, response, title):
         if ('ask_hn' in tags or 'poll' in tags or 'comment' in tags):
             add_element(rss_item, 'link', hn_url)
         elif 'story' in tags:
-            if request.args.get('link', '') == 'comments':
+            if request.args.get('link') == 'comments':
                 add_element(rss_item, 'link', hn_url)
             elif hit.get('url'):
                 add_element(rss_item, 'link', hit.get('url'))
+            else:
+                add_element(rss_item, 'link', hn_url)
         
         add_element(rss_item, 'author', hit.get('author'))
 

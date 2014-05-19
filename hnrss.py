@@ -2,7 +2,7 @@
 
 import time
 import requests
-from flask import Flask, request
+from flask import Flask, request, redirect
 from lxml import etree
 
 API_BASE_URL = 'https://hn.algolia.com/api/v1'
@@ -153,6 +153,11 @@ def search():
     response = do_search(request, 'search_by_date', tags)
     rss = generate_rss(request, response, 'Hacker News: Search for "%s"' % query)
     return make_rss_response(rss)
+
+@app.route('/')
+@app.route('/feeds/')
+def index():
+    return redirect('https://github.com/edavis/hnrss#readme')
 
 if __name__ == '__main__':
     app.run(debug=True)

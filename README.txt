@@ -99,20 +99,6 @@ comment page, provide "link=comments" as a GET parameter:
 
   /feeds/firehose.xml?link=comments
 
-Titles
-------
-
-Comments don't have "titles" in the traditional sense.
-
-hnrss handles this by including comments in the <description>
-element. This adheres to the RSS specification, but can cause problems
-with some feed readers.
-
-To include comments in a <title> element, pass "usetitles=1" in your
-request:
-
-  /feeds/comments.xml?points=10&usetitles=1
-
 Credits
 -------
 

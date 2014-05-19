@@ -53,26 +53,20 @@ def generate_rss(request, response, title):
     add_element(rss_channel, 'generator', 'https://github.com/edavis/hnrss')
     add_element(rss_channel, 'lastBuildDate', generate_rfc2822())
 
-    def _handle_usetitles(request, parent, text):
-        if request.args.get('usetitles'):
-            add_element(parent, 'title', text)
-        else:
-            add_element(parent, 'description', text)
-
     for hit in response.json()['hits']:
+        rss_item = etree.SubElement(rss_channel, 'item')
         hn_url = 'https://news.ycombinator.com/item?id=%s' % hit['objectID']
         tags = hit.get('_tags', [])
 
-        rss_item = etree.SubElement(rss_channel, 'item')
-
-        if hit.get('title'):
-            add_element(rss_item, 'title', hit.get('title'))
-
-        if hit.get('story_text'):
-            add_element(rss_item, 'description', hit.get('story_text'))
-
-        elif hit.get('comment_text'):
-            _handle_usetitles(request, rss_item, hit.get('comment_text'))
+        if 'comment' in tags:
+            add_element(rss_item, 'title', 'New comment by %s in "%s"' % (
+                hit.get('author'), hit.get('story_title')))
+            add_element(rss_item, 'description', hit.get('comment_text'))
+        else:
+            if hit.get('title'):
+                add_element(rss_item, 'title', hit.get('title'))
+            if hit.get('story_text'):
+                add_element(rss_item, 'description', hit.get('story_text'))
 
         add_element(rss_item, 'pubDate', generate_rfc2822(hit.get('created_at_i')))
 

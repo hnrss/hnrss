@@ -120,7 +120,10 @@ def comments():
     if request.args.get('id'):
         tags.append('story_%s' % request.args.get('id'))
         response = do_search(request, 'search_by_date', ','.join(tags))
-        rss_title = '"%s" comments' % response.json()['hits'][0]['story_title']
+        if response.json()['hits']:
+            rss_title = '"%s" comments' % response.json()['hits'][0]['story_title']
+        else:
+            rss_title = 'New Comments'
     else:
         response = do_search(request, 'search_by_date', ','.join(tags))
         rss_title = 'New Comments'

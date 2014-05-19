@@ -58,7 +58,7 @@ hnrss provides the following feeds:
 
     http://hnrss.org/feeds/author/edavis.xml?only=comments # or "stories"
 
-* http://hnrss.org/feeds/search.xml?query=TERM
+* http://hnrss.org/feeds/search.xml?query=VALUE
 
   Full-text search with results sorted by age descending.
 

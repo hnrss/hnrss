@@ -2,7 +2,7 @@
 
 import time
 import requests
-from flask import Flask, request, make_response
+from flask import Flask, request
 from lxml import etree
 
 API_BASE_URL = 'https://hn.algolia.com/api/v1'

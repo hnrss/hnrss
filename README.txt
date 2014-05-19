@@ -4,8 +4,6 @@ hnrss
 hnrss generates RSS feeds for new posts (and comments) as they appear
 on Hacker News.
 
-It can be found at http://hnrss.org/
-
 Examples
 --------
 

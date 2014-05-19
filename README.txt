@@ -43,7 +43,7 @@ hnrss provides the following feeds:
   To only show comments from a particular story, pass its story ID via
   the "id" parameter:
 
-    /feeds/comments.xml?id=7763923
+    http://hnrss.org/feeds/comments.xml?id=7763923
 
   The ID is the number after "?id=" on an article's comment page.
 
@@ -54,7 +54,7 @@ hnrss provides the following feeds:
   To limit the results to only stories or comments, use the "only"
   parameter:
 
-    /feeds/author/edavis.xml?only=comments # or "stories"
+    http://hnrss.org/feeds/author/edavis.xml?only=comments # or "stories"
 
 * http://hnrss.org/feeds/search.xml?query=TERM
 
@@ -63,7 +63,7 @@ hnrss provides the following feeds:
   By default, results only include stories. To include both stories
   and comments, pass "?all=1":
 
-    /feeds/search.xml?query=Django&all=1
+    http://hnrss.org/feeds/search.xml?query=Django&all=1
   
 Filters
 -------
@@ -75,14 +75,14 @@ To limit results, use the "points" and/or "comments" filter(s):
   Provide a "points" GET parameter to only include results containing
   more than N points:
 
-  /feeds/firehose.xml?points=50 # All stories with > 50 points
+    http://hnrss.org/feeds/firehose.xml?points=50 # All stories with > 50 points
 
 * Comments
 
   Provide a "comments" GET parameter to only include results
   containing more than N comments:
 
-  /feeds/askhn.xml?comments=25 # All 'Ask HN' posts with > 25 points
+    http://hnrss.org/feeds/askhn.xml?comments=25 # All 'Ask HN' posts with > 25 points
 
   This works for all feeds except /feeds/comments.xml.
 
@@ -95,7 +95,7 @@ By default, stories that link to external websites have that external
 URL in <link>. If you'd rather have <link> point to the story's
 comment page, provide "link=comments" as a GET parameter:
 
-  /feeds/firehose.xml?link=comments
+  http://hnrss.org/feeds/firehose.xml?link=comments
 
 Credits
 -------

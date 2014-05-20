@@ -82,7 +82,7 @@ def generate_rss(request, response, title):
         
         add_element(rss_item, 'author', hit.get('author'))
 
-        if 'story' in tags:
+        if ('story' in tags or 'poll' in tags):
             add_element(rss_item, 'comments', hn_url)
 
         add_element(rss_item, 'guid', hn_url)

@@ -95,7 +95,7 @@ def make_rss_response(rss_doc):
 
 @app.route('/feeds/firehose.xml')
 def stories():
-    response = do_search(request, 'search_by_date', 'story')
+    response = do_search(request, 'search_by_date', '(story,poll)')
     rss = generate_rss(request, response, 'Hacker News: Firehose')
     return make_rss_response(rss)
 

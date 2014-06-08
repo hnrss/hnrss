@@ -5,9 +5,45 @@ import requests
 from flask import Flask, request, redirect
 from lxml import etree
 
-API_BASE_URL = 'https://hn.algolia.com/api/v1'
-
 app = Flask(__name__)
+
+class API(object):
+    base_url = 'https://hn.algolia.com/api/v1'
+
+    def __init__(self, endpoint='search_by_date', points=None, comments=None):
+        self.endpoint = endpoint
+        self.params = {}
+        if points or comments:
+            numeric_filters = filter(bool, [
+                'points>%s' % points if points else None,
+                'num_comments>%s' % comments if comments else None,
+            ])
+            self.params['numericFilters'] = ','.join(numeric_filters)
+
+    def _request(self, tags, query=None):
+        params = self.params.copy()
+        params['tags'] = tags
+        if query:
+            params['query'] = query
+        resp = requests.get(
+            '%s/%s' % (self.base_url, self.endpoint),
+            params = params,
+            verify = False,
+        )
+        resp.raise_for_status()
+        return resp.json()
+
+    def firehose(self):
+        return self._request('(story,poll)')
+
+    def ask_hn(self):
+        return self._request('ask_hn')
+
+    def show_hn(self):
+        return self._request('show_hn')
+
+    def polls(self):
+        return self._request('poll')
 
 def do_search(request, endpoint, tags):
     params = {}

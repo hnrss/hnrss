@@ -1,7 +1,9 @@
 hnrss — Hacker News RSS
 ========================
 
-hnrss provides a variety of RSS feeds for Hacker News.
+hnrss provides custom, realtime RSS feeds for Hacker News.
+
+The [project page](http://hnrss.org/) explains all available RSS feeds.
 
 Overview
 --------

@@ -24,9 +24,10 @@ class RSS(object):
             tags = hit.get('_tags', [])
 
             if 'comment' in tags:
-                self.add_element(rss_item, 'title', 'New comment by %s in "%s"' % (
-                    hit.get('author'), hit.get('story_title')))
-                self.add_element(rss_item, 'description', hit.get('comment_text'))
+                if hit.get('story_title') and hit.get('comment_text'):
+                    self.add_element(rss_item, 'title', 'New comment by %s in "%s"' % (
+                        hit.get('author'), hit.get('story_title')))
+                    self.add_element(rss_item, 'description', hit.get('comment_text'))
             else:
                 if hit.get('title'):
                     self.add_element(rss_item, 'title', hit.get('title'))

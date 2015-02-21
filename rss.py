@@ -11,7 +11,7 @@ class RSS(object):
         self.add_element(self.rss_channel, 'title', title)
         self.add_element(self.rss_channel, 'link', link)
         self.add_element(self.rss_channel, 'description', 'Hacker News RSS')
-        self.add_element(self.rss_channel, 'docs', 'http://cyber.law.harvard.edu/rss/rss.html')
+        self.add_element(self.rss_channel, 'docs', 'https://edavis.github.io/hnrss/')
         self.add_element(self.rss_channel, 'generator', 'https://github.com/edavis/hnrss')
         self.add_element(self.rss_channel, 'lastBuildDate', self.generate_rfc2822())
 

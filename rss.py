@@ -1,5 +1,18 @@
+import re
 import time
+from xml.sax.saxutils import unescape
 from lxml import etree
+
+def deref_ncr(m):
+    """
+    Dereference numeric character references.
+
+    Transforms '&#x2F;' into '/'.
+
+    This function is used as the second argument to re.sub to for
+    story_text elements.
+    """
+    return unichr(int(m.group(1), 16))
 
 class RSS(object):
     def __init__(self, api_response, title, link='https://news.ycombinator.com/'):
@@ -22,6 +35,13 @@ class RSS(object):
             rss_item = etree.SubElement(self.rss_channel, 'item')
             hn_url = 'https://news.ycombinator.com/item?id=%s' % hit['objectID']
             tags = hit.get('_tags', [])
+
+            if hit.get('story_text'):
+                s = re.sub('&#[Xx]([A-Fa-f0-9]+);', deref_ncr, hit.get('story_text'))
+                entities = {'&quot;': '"', '&apos;': "'"}
+                hit.update({
+                    'story_text': unescape(s, entities),
+                })
 
             if 'comment' in tags:
                 if hit.get('story_title') and hit.get('comment_text'):

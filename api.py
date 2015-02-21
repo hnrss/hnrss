@@ -3,7 +3,7 @@ import requests
 class API(object):
     base_url = 'https://hn.algolia.com/api/v1'
 
-    def __init__(self, points=None, comments=None, link_to='url', query=None):
+    def __init__(self, points=None, comments=None, link_to='url', query=None, description=True):
         self.endpoint = 'search_by_date'
         self.params = {}
         if points or comments:
@@ -14,6 +14,7 @@ class API(object):
         if query:
             self.params['query'] = '"%s"' % query
         self.link_to = link_to
+        self.description = description
 
     @classmethod
     def using_request(cls, request):
@@ -22,6 +23,7 @@ class API(object):
             comments = request.args.get('comments'),
             link_to = request.args.get('link', 'url'),
             query = request.args.get('q'),
+            description = bool(int(request.args.get('description', 1))),
         )
 
     def _request(self, tags):
@@ -34,7 +36,10 @@ class API(object):
         )
         resp.raise_for_status()
         obj = resp.json().copy()
-        obj['link_to'] = self.link_to
+        obj.update({
+            'link_to': self.link_to,
+            'description': self.description,
+        })
         return obj
 
     def newest(self):

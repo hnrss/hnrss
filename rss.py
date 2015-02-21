@@ -1,18 +1,13 @@
 import re
 import time
-from xml.sax.saxutils import unescape
+from xml.sax.saxutils import unescape as sax_unescape
 from lxml import etree
 
-def deref_ncr(m):
-    """
-    Dereference numeric character references.
-
-    Transforms '&#x2F;' into '/'.
-
-    This function is used as the second argument to re.sub to for
-    story_text elements.
-    """
-    return unichr(int(m.group(1), 16))
+def unescape(s):
+    deref_ncr = lambda m: unichr(int(m.group(1), 16)) # '&#x2F;' -> '/'
+    s = re.sub('&#[Xx]([A-Fa-f0-9]+);', deref_ncr, s)
+    entities = {'&quot;': '"', '&apos;': "'"}
+    return sax_unescape(s, entities)
 
 class RSS(object):
     def __init__(self, api_response, title, link='https://news.ycombinator.com/'):
@@ -36,23 +31,16 @@ class RSS(object):
             hn_url = 'https://news.ycombinator.com/item?id=%s' % hit['objectID']
             tags = hit.get('_tags', [])
 
-            if hit.get('story_text'):
-                s = re.sub('&#[Xx]([A-Fa-f0-9]+);', deref_ncr, hit.get('story_text'))
-                entities = {'&quot;': '"', '&apos;': "'"}
-                hit.update({
-                    'story_text': unescape(s, entities),
-                })
-
             if 'comment' in tags:
                 if hit.get('story_title') and hit.get('comment_text'):
                     self.add_element(rss_item, 'title', 'New comment by %s in "%s"' % (
                         hit.get('author'), hit.get('story_title')))
-                    self.add_element(rss_item, 'description', hit.get('comment_text'))
+                    self.add_element(rss_item, 'description', unescape(hit.get('comment_text')))
             else:
                 if hit.get('title'):
                     self.add_element(rss_item, 'title', hit.get('title'))
                 if hit.get('story_text'):
-                    self.add_element(rss_item, 'description', hit.get('story_text'))
+                    self.add_element(rss_item, 'description', unescape(hit.get('story_text')))
                 elif self.api_response['description'] and self.api_response['link_to'] == 'url':
                     self.add_element(rss_item, 'description', 'Comments URL: <a href="%(hn_url)s">%(hn_url)s</a>' % {'hn_url': hn_url})
                 elif self.api_response['description'] and self.api_response['link_to'] == 'comments':

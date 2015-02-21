@@ -11,7 +11,7 @@ Overview
 The following feeds are available:
 
 - **Firehose** — Every new [post](http://hnrss.org/newest) and [comment](http://hnrss.org/newcomments) as it arrives
-- **Points** — [Posts](http://hnrss.org/newest?points=300) and [comments](http://hnrss.org/newcomments?points=25) with more than N points
+- **Points** — [Posts](http://hnrss.org/newest?points=300) with more than N points
 - **Activity** — [Posts](http://hnrss.org/newest?comments=250) with more than N comments
 - **Self-posts** — All "[Ask HN](http://hnrss.org/ask)" and "[Show HN](http://hnrss.org/show)" posts, along with [polls](http://hnrss.org/polls)
 - **Users** — New [posts](http://hnrss.org/submitted?id=tokenadult) and [comments](http://hnrss.org/threads?id=tptacek) made by a given user

@@ -58,7 +58,7 @@ class RSS(object):
             if ('story' in tags or 'poll' in tags):
                 self.add_element(rss_item, 'comments', hn_url)
 
-            self.add_element(rss_item, 'guid', hn_url)
+            self.add_element(rss_item, 'guid', hn_url, isPermaLink='false')
 
     def response(self):
         rss_xml = etree.tostring(
@@ -66,8 +66,8 @@ class RSS(object):
         )
         return (rss_xml, 200, {'Content-Type': 'text/xml'})
 
-    def add_element(self, parent, tag, text):
-        el = etree.Element(tag)
+    def add_element(self, parent, tag, text, **attrs):
+        el = etree.Element(tag, attrs)
         el.text = text
         parent.append(el)
         return el

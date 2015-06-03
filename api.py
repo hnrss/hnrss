@@ -3,7 +3,8 @@ import requests
 class API(object):
     base_url = 'https://hn.algolia.com/api/v1'
 
-    def __init__(self, points=None, comments=None, link_to='url', query=None, description=True):
+    def __init__(self, points=None, comments=None, link_to='url',
+                 query=None, search_attrs='title', description=True):
         self.endpoint = 'search_by_date'
         self.params = {}
         if points or comments:
@@ -13,6 +14,8 @@ class API(object):
             self.params['numericFilters'] = ','.join(numeric_filters)
         if query:
             self.params['query'] = '"%s"' % query
+            if search_attrs != 'default':
+                self.params['restrictSearchableAttributes'] = search_attrs
         self.link_to = link_to
         self.description = description
 
@@ -23,6 +26,7 @@ class API(object):
             comments = request.args.get('comments'),
             link_to = request.args.get('link', 'url'),
             query = request.args.get('q'),
+            search_attrs = request.args.get('search_attrs', 'title'),
             description = bool(int(request.args.get('description', 1))),
         )
 

@@ -74,4 +74,4 @@ class RSS(object):
 
     def generate_rfc2822(self, secs=None):
         t = time.gmtime(secs)
-        return time.strftime('%a, %d %b %Y %H:%M:%S GMT', t)
+        return time.strftime('%a, %d %b %Y %H:%M:%S +0000', t)

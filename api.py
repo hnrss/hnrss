@@ -2,9 +2,10 @@ import requests
 
 class API(object):
     base_url = 'https://hn.algolia.com/api/v1'
+    count_limit = 100
 
     def __init__(self, points=None, comments=None, link_to='url',
-                 query=None, search_attrs='title', description=True):
+                 query=None, search_attrs='title', description=True, count=None):
         self.endpoint = 'search_by_date'
         self.params = {}
         if points or comments:
@@ -18,6 +19,13 @@ class API(object):
                 self.params['restrictSearchableAttributes'] = search_attrs
         self.link_to = link_to
         self.description = description
+        if count is not None:
+            try:
+                self.count = min(self.count_limit, int(count))
+            except ValueError:
+                pass
+            else:
+                self.params['hitsPerPage'] = self.count
 
     @classmethod
     def using_request(cls, request):
@@ -28,6 +36,7 @@ class API(object):
             query = request.args.get('q'),
             search_attrs = request.args.get('search_attrs', 'title'),
             description = bool(int(request.args.get('description', 1))),
+            count = request.args.get('count'),
         )
 
     def _request(self, tags):

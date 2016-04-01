@@ -45,7 +45,6 @@ class API(object):
         resp = requests.get(
             '%s/%s' % (self.base_url, self.endpoint),
             params = params,
-            verify = False,
         )
         resp.raise_for_status()
         obj = resp.json().copy()

@@ -23,6 +23,7 @@ def new_comments():
     query = request.args.get('q')
     api = API.using_request(request)
     if query:
+        del api.params['restrictSearchableAttributes']
         rss_title = 'Hacker News: "%s" comments' % query
     else:
         rss_title = 'Hacker News: New Comments'

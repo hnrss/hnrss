@@ -41,10 +41,20 @@ class RSS(object):
                     self.add_element(rss_item, 'title', hit.get('title'))
                 if hit.get('story_text'):
                     self.add_element(rss_item, 'description', unescape(hit.get('story_text')))
-                elif self.api_response['description'] and self.api_response['link_to'] == 'url':
-                    self.add_element(rss_item, 'description', 'Comments URL: <a href="%(hn_url)s">%(hn_url)s</a>' % {'hn_url': hn_url})
-                elif self.api_response['description'] and self.api_response['link_to'] == 'comments':
-                    self.add_element(rss_item, 'description', 'Article URL: <a href="%(url)s">%(url)s</a>' % {'url': hit.get('url') or hn_url})
+                elif self.api_response['description']:
+                    template = (
+                        '<p>Article URL: <a href="%(url)s">%(url)s</a></p>'
+                        '<p>Comments URL: <a href="%(hn_url)s">%(hn_url)s</a></p>'
+                        '<p>Points: %(points)s</p>'
+                        '<p># Comments: %(comments)s</p>'
+                    )
+                    params = {
+                        'url': hit.get('url') or hn_url,
+                        'hn_url': hn_url,
+                        'points': hit.get('points', 0) or 0,
+                        'comments': hit.get('num_comments', 0) or 0,
+                    }
+                    self.add_element(rss_item, 'description', template % params)
 
             self.add_element(rss_item, 'pubDate', self.generate_rfc2822(hit.get('created_at_i')))
 

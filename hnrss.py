@@ -18,6 +18,13 @@ def newest():
     rss = RSS(api.newest(), rss_title, 'https://news.ycombinator.com/newest')
     return rss.response()
 
+@app.route('/frontpage')
+def frontpage():
+    api = API.using_request(request)
+    rss_title = 'Hacker News: Front Page'
+    rss = RSS(api.frontpage(), rss_title, 'https://news.ycombinator.com/')
+    return rss.response()
+
 @app.route('/newcomments')
 def new_comments():
     query = request.args.get('q')

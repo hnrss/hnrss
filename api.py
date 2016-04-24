@@ -57,6 +57,9 @@ class API(object):
     def newest(self):
         return self._request('(story,poll)')
 
+    def frontpage(self):
+        return self._request('front_page')
+
     def ask_hn(self):
         return self._request('ask_hn')
 

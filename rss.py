@@ -74,7 +74,16 @@ class RSS(object):
         rss_xml = etree.tostring(
             self.rss_root, pretty_print=True, encoding='UTF-8', xml_declaration=True,
         )
-        return (rss_xml, 200, {'Content-Type': 'text/xml'})
+
+        latest = max(hit['created_at_i'] for hit in self.api_response['hits'])
+        last_modified = self.generate_rfc2822(latest).replace('+0000', 'GMT')
+
+        headers = {
+            'Content-Type': 'text/xml',
+            'Last-Modified': last_modified,
+        }
+
+        return (rss_xml, 200, headers)
 
     def add_element(self, parent, tag, text, **attrs):
         el = etree.Element(tag, attrs)

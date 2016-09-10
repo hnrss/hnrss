@@ -75,12 +75,15 @@ class RSS(object):
             self.rss_root, pretty_print=True, encoding='UTF-8', xml_declaration=True,
         )
 
-        latest = max(hit['created_at_i'] for hit in self.api_response['hits'])
-        last_modified = self.generate_rfc2822(latest).replace('+0000', 'GMT')
+        if self.api_response['hits']:
+            latest = max(hit['created_at_i'] for hit in self.api_response['hits'])
+            last_modified = self.generate_rfc2822(latest)
+        else:
+            last_modified = self.generate_rfc2822()
 
         headers = {
             'Content-Type': 'text/xml',
-            'Last-Modified': last_modified,
+            'Last-Modified': last_modified.replace('+0000', 'GMT'),
         }
 
         return (rss_xml, 200, headers)

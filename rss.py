@@ -78,12 +78,22 @@ class RSS(object):
         if self.api_response['hits']:
             latest = max(hit['created_at_i'] for hit in self.api_response['hits'])
             last_modified = self.generate_rfc2822(latest)
+
+            # Set max-age=N to the average number of seconds between new items
+            timestamps = sorted(map(lambda h: h['created_at_i'], self.api_response['hits']), reverse=True)
+            seconds = sum(timestamps[idx] - timestamps[idx+1] for idx in xrange(0, len(timestamps) - 1)) / float(len(timestamps))
         else:
             last_modified = self.generate_rfc2822()
+            seconds = 5 * 60
+
+        # Cap at one hour
+        if seconds > (60 * 60):
+            seconds = (60 * 60)
 
         headers = {
             'Content-Type': 'text/xml',
             'Last-Modified': last_modified.replace('+0000', 'GMT'),
+            'Cache-Control': 'max-age=%d' % int(seconds),
         }
 
         return (rss_xml, 200, headers)

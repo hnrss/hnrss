@@ -86,8 +86,10 @@ class RSS(object):
             last_modified = self.generate_rfc2822()
             seconds = 5 * 60
 
-        # Cap at one hour
-        if seconds > (60 * 60):
+        # Cap between 5 minutes and 1 hour
+        if seconds < (5 * 60):
+            seconds = (5 * 60)
+        elif seconds > (60 * 60):
             seconds = (60 * 60)
 
         headers = {

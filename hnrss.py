@@ -2,10 +2,12 @@
 
 from api import API
 from flask import Flask, request, redirect
+from flask_compress import Compress
 from rss import RSS
 from urllib import urlencode
 
 app = Flask(__name__)
+Compress(app)
 
 @app.route('/newest')
 def newest():

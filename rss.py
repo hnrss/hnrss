@@ -4,6 +4,15 @@ from xml.sax.saxutils import unescape as sax_unescape
 from flask import request
 from lxml import etree
 
+try:
+    unichr(0)
+except NameError:
+    unichr = chr
+try:
+    xrange(0)
+except NameError:
+    xrange = range
+
 def unescape(s):
     deref_ncr = lambda m: unichr(int(m.group(1), 16)) # '&#x2F;' -> '/'
     s = re.sub('&#[Xx]([A-Fa-f0-9]+);', deref_ncr, s)

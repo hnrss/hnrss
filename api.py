@@ -13,8 +13,14 @@ class API(object):
             if points: numeric_filters.append('points>%s' % points)
             if comments: numeric_filters.append('num_comments>%s' % comments)
             self.params['numericFilters'] = ','.join(numeric_filters)
-        if query:
-            self.params['query'] = '"%s"' % query
+        if query is not None:
+            if ' OR ' in query:
+                components = query.replace(' OR ', ' ')
+                self.params['query'] = components
+                self.params['optionalWords'] = components
+            else:
+                self.params['query'] = '"%s"' % query
+
             if search_attrs != 'default':
                 self.params['restrictSearchableAttributes'] = search_attrs
         self.link_to = link_to

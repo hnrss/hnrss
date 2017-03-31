@@ -23,7 +23,7 @@ Support
 -------
 
 hnrss is a labor of love, but if the project has made your job or
-hobby project easier and you want to show some support, donations are
+hobby project easier and you want to show some gratitude, donations are
 very much appreciated. Thanks!
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZP9Q7QUNS3QYY)

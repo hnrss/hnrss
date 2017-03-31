@@ -52,7 +52,6 @@ class API(object):
             '%s/%s' % (self.base_url, self.endpoint),
             params = params,
         )
-        resp.raise_for_status()
         obj = resp.json().copy()
         obj.update({
             'link_to': self.link_to,

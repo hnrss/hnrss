@@ -23,7 +23,8 @@ class RSS(object):
         self.add_element(self.rss_channel, 'generator', 'https://github.com/edavis/hnrss')
         self.add_element(self.rss_channel, 'lastBuildDate', self.generate_rfc2822())
 
-        self.generate_body()
+        if 'hits' in api_response:
+            self.generate_body()
 
     def generate_body(self):
         for hit in self.api_response['hits']:
@@ -75,7 +76,7 @@ class RSS(object):
             self.rss_root, pretty_print=True, encoding='UTF-8', xml_declaration=True,
         )
 
-        if self.api_response['hits']:
+        if self.api_response.get('hits'):
             latest = max(hit['created_at_i'] for hit in self.api_response['hits'])
             last_modified = self.generate_rfc2822(latest)
 

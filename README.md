@@ -22,7 +22,7 @@ The following feeds are available:
 Support
 -------
 
-hnrss.org is a labor of love, but if the project has made your job or
+hnrss is a labor of love, but if the project has made your job or
 hobby project easier and you want to show some support, donations are
 very much appreciated. Thanks!
 

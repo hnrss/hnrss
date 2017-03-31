@@ -19,6 +19,15 @@ The following feeds are available:
 - **Threads** — Each new comment made [in a given thread](http://hnrss.org/item?id=7864813)
 - **Searches** — New [posts](http://hnrss.org/newest?q=git) and [comments](http://hnrss.org/newcomments?q=django) matching a given search term
 
+Support
+-------
+
+hnrss.org is a labor of love, but if the project has made your job or
+hobby project easier and you want to show some support, donations are
+very much appreciated. Thanks!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZP9Q7QUNS3QYY)
+
 Credits
 -------
 

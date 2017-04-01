@@ -27,7 +27,10 @@ class RSS(object):
         self.add_element(self.rss_channel, 'docs', 'https://edavis.github.io/hnrss/')
         self.add_element(self.rss_channel, 'generator', 'https://github.com/edavis/hnrss')
         self.add_element(self.rss_channel, 'lastBuildDate', self.generate_rfc2822())
-        self.add_element(self.rss_channel, '{http://www.w3.org/2005/Atom}link', text='', rel='self', type='application/rss+xml', href=request.url)
+
+        # FIXME: Is there a way to tell Flask or nginx we're running under HTTPS so this is correct off the bat?
+        atom_link = request.url.replace('http://', 'https://')
+        self.add_element(self.rss_channel, '{http://www.w3.org/2005/Atom}link', text='', rel='self', type='application/rss+xml', href=atom_link)
 
         if 'hits' in api_response:
             self.generate_body()

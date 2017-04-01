@@ -94,7 +94,7 @@ class RSS(object):
             seconds = (60 * 60)
 
         headers = {
-            'Content-Type': 'text/xml',
+            'Content-Type': 'text/xml; charset=utf-8',
             'Last-Modified': last_modified.replace('+0000', 'GMT'),
             'Cache-Control': 'max-age=%d' % int(seconds),
             'Expires': self.generate_rfc2822(int(time.time() + seconds)).replace('+0000', 'GMT'),

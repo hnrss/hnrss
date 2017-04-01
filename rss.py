@@ -13,7 +13,10 @@ class RSS(object):
     def __init__(self, api_response, title, link='https://news.ycombinator.com/'):
         self.api_response = api_response
 
-        self.rss_root = etree.Element('rss', version='2.0')
+        nsmap = {
+            'dc': 'http://purl.org/dc/elements/1.1/',
+        }
+        self.rss_root = etree.Element('rss', version='2.0', nsmap=nsmap)
         self.rss_channel = etree.SubElement(self.rss_root, 'channel')
 
         self.add_element(self.rss_channel, 'title', title)
@@ -64,7 +67,7 @@ class RSS(object):
             else:
                 self.add_element(rss_item, 'link', hit.get('url') or hn_url)
 
-            self.add_element(rss_item, 'author', hit.get('author'))
+            self.add_element(rss_item, '{http://purl.org/dc/elements/1.1/}creator', hit.get('author'))
 
             if ('story' in tags or 'poll' in tags):
                 self.add_element(rss_item, 'comments', hn_url)

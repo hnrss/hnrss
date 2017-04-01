@@ -1,6 +1,7 @@
 import re
 import time
 from xml.sax.saxutils import unescape as sax_unescape
+from flask import request
 from lxml import etree
 
 def unescape(s):
@@ -15,6 +16,7 @@ class RSS(object):
 
         nsmap = {
             'dc': 'http://purl.org/dc/elements/1.1/',
+            'atom': 'http://www.w3.org/2005/Atom',
         }
         self.rss_root = etree.Element('rss', version='2.0', nsmap=nsmap)
         self.rss_channel = etree.SubElement(self.rss_root, 'channel')
@@ -25,6 +27,7 @@ class RSS(object):
         self.add_element(self.rss_channel, 'docs', 'https://edavis.github.io/hnrss/')
         self.add_element(self.rss_channel, 'generator', 'https://github.com/edavis/hnrss')
         self.add_element(self.rss_channel, 'lastBuildDate', self.generate_rfc2822())
+        self.add_element(self.rss_channel, '{http://www.w3.org/2005/Atom}link', text='', rel='self', type='application/rss+xml', href=request.url)
 
         if 'hits' in api_response:
             self.generate_body()

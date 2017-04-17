@@ -1,0 +1,40 @@
+@import url(fonts.css);
+
+body {
+	font: 16px/1.5 Go, sans-serif;
+	color: #333;
+	margin: 50px 25px;
+}
+
+@media (min-width: 650px) {
+	body {
+		width: 550px;
+		margin: 50px auto;
+	}
+}
+
+a { color: #333; }
+
+a:hover { color: #666; text-decoration: none; }
+
+code, pre { background: #eee; }
+
+code { padding: 3px 7px; }
+
+pre {
+	padding: 8px;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+	margin-top: 30px;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	border-bottom: thin solid #ddd;
+}
+
+h1, h2 {
+	border-bottom: 0;
+	margin-top: 20px;
+}
+
+p { margin-top: 0; }

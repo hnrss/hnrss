@@ -16,8 +16,12 @@ class API(object):
         if query is not None:
             if ' OR ' in query:
                 components = query.replace(' OR ', ' ')
-                self.params['query'] = components
-                self.params['optionalWords'] = components
+                if '"' in components:
+                    quoted_terms = components
+                else:
+                    quoted_terms = ' '.join('"%s"' % t for t in components.split())
+                self.params['query'] = quoted_terms
+                self.params['optionalWords'] = quoted_terms
             else:
                 self.params['query'] = '"%s"' % query
 

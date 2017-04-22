@@ -1,6 +1,5 @@
 import re
 import time
-import urllib
 from xml.sax.saxutils import unescape as sax_unescape
 from flask import request
 from lxml import etree
@@ -31,7 +30,6 @@ class RSS(object):
 
         # FIXME: Is there a way to tell Flask or nginx we're running under HTTPS so this is correct off the bat?
         atom_link = request.url.replace('http://', 'https://')
-        atom_link = urllib.quote(atom_link, safe=':/?=')
         self.add_element(self.rss_channel, '{http://www.w3.org/2005/Atom}link', text='', rel='self', type='application/rss+xml', href=atom_link)
 
         if 'hits' in api_response:

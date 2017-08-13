@@ -67,7 +67,6 @@ class RSS(object):
                         '<p>Comments URL: <a href="%(hn_url)s">%(hn_url)s</a></p>'
                         '<p>Points: %(points)s</p>'
                         '<p># Comments: %(comments)s</p>'
-                        "<br><hr><br><iframe data-aa='603998' src='//ad.a-ads.com/603998?size=728x90' scrolling='no' style='width:100%%; height:90px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>"
                     )
                     params = {
                         'url': hit.get('url') or hn_url,

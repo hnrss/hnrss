@@ -1,6 +1,6 @@
 import re
 import time
-import random
+import hashlib
 from xml.sax.saxutils import unescape as sax_unescape
 from flask import request
 from lxml import etree
@@ -20,8 +20,9 @@ def unescape(s):
     entities = {'&quot;': '"', '&apos;': "'"}
     return sax_unescape(s, entities)
 
-def insert_donation_request():
-    if random.random() <= 5/20.0:
+def insert_donation_request(guid):
+    h = hashlib.sha1(guid).hexdigest()
+    if h.startswith(('0', '1', '2', '3')):
         return '''
 <hr><p>hnrss is a labor of love, but if the project has made your job
 or hobby project easier and you want to show some gratitude, <a
@@ -79,7 +80,7 @@ class RSS(object):
                         '<p>Comments URL: <a href="%(hn_url)s">%(hn_url)s</a></p>'
                         '<p>Points: %(points)s</p>'
                         '<p># Comments: %(comments)s</p>'
-                    ) + insert_donation_request()
+                    ) + insert_donation_request(hn_url)
                     params = {
                         'url': hit.get('url') or hn_url,
                         'hn_url': hn_url,

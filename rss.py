@@ -24,12 +24,10 @@ def insert_donation_request(guid):
     h = hashlib.sha1(guid).hexdigest()
     if h.startswith(('0', '1', '2', '3')):
         return '''
-
 <hr><p>hnrss is a labor of love, but if the project has made your job
 or hobby project easier and you want to show some gratitude, <a
 href="https://donate.hnrss.org/">donations are very much
 appreciated</a>. PayPal and Bitcoin both accepted. Thanks!</p>
-
         '''
     else:
         return ''

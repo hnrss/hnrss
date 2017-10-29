@@ -60,6 +60,12 @@ def polls():
     rss = RSS(api.polls(), 'Hacker News: Polls')
     return rss.response()
 
+@app.route('/jobs')
+def jobs():
+    api = API.using_request(request)
+    rss = RSS(api.jobs(), 'Hacker News: Jobs')
+    return rss.response()
+
 @app.route('/item')
 def story_comments():
     story_id = request.args.get('id')

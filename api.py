@@ -78,6 +78,9 @@ class API(object):
     def polls(self):
         return self._request('poll')
 
+    def jobs(self):
+        return self._request('job')
+
     def comments(self, story_id=None):
         tags = ['comment']
         if story_id is not None:

@@ -51,7 +51,7 @@ def ask():
 @app.route('/show')
 def show():
     api = API.using_request(request)
-    rss = RSS(api.show_hn(), 'Hacker News: Show HN')
+    rss = RSS(api.show_hn(), 'Hacker News: Show HN', 'https://news.ycombinator.com/shownew')
     return rss.response()
 
 @app.route('/polls')
@@ -63,7 +63,7 @@ def polls():
 @app.route('/jobs')
 def jobs():
     api = API.using_request(request)
-    rss = RSS(api.jobs(), 'Hacker News: Jobs')
+    rss = RSS(api.jobs(), 'Hacker News: Jobs', 'https://news.ycombinator.com/jobs')
     return rss.response()
 
 @app.route('/item')

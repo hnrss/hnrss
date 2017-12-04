@@ -30,6 +30,25 @@ def frontpage():
     rss = RSS(api.frontpage(), rss_title, 'https://news.ycombinator.com/')
     return rss.response()
 
+@app.route('/whoishiring')
+def who_is_hiring():
+    # Get posts by user 'whoishiring'
+    api = API.using_request(request)
+    rss = RSS(api.who_is_hiring(), 'Who is Hiring - All', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    return rss.response()
+
+@app.route('/whoishiring/jobs')
+def who_is_hiring_jobs():
+    api = API.using_request(request)
+    rss = RSS(api.who_is_hiring('jobs'), 'Who is Hiring - Who is Hiring', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    return rss.response()
+
+@app.route('/whoishiring/freelance')
+def who_is_hiring_freelance():
+    api = API.using_request(request)
+    rss = RSS(api.who_is_hiring('freelance'), 'Who is Hiring - Freelance', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    return rss.response()
+
 @app.route('/newcomments')
 def new_comments():
     query = request.args.get('q')

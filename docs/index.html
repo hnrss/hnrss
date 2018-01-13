@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js">
 	<head>
-	<meta name="generator" content="Hugo 0.26" />
+	<meta name="generator" content="Hugo 0.30.2" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<base href="https://edavis.github.io/hnrss/">
@@ -27,7 +27,7 @@
 <li><strong>Points</strong> &ndash; <a href="https://hnrss.org/newest?points=300">Posts</a> with more than N points.</li>
 <li><strong>Activity</strong> &ndash; <a href="https://hnrss.org/newest?comments=250">Posts</a> with more than N comments.</li>
 <li><strong>Self-posts</strong> &ndash; All &ldquo;<a href="https://hnrss.org/ask">Ask HN</a>&rdquo; and &ldquo;<a href="https://hnrss.org/show">Show HN</a>&rdquo; posts, along with <a href="https://hnrss.org/polls">polls</a>.</li>
-<li><strong>Jobs</strong> &ndash; All <a href="https://hnrss.org/jobs">hiring posts</a> made by startups funded by YC.</li>
+<li><strong>Jobs</strong> &ndash; All <a href="https://hnrss.org/jobs">hiring posts</a> made by YC startups along with comments from the monthly <a href="https://hnrss.org/whoishiring/jobs">&ldquo;Who is hiring?&rdquo;</a> threads.</li>
 <li><strong>Users</strong> &ndash; New <a href="https://hnrss.org/submitted?id=tokenadult">posts</a> and <a href="https://hnrss.org/threads?id=tptacek">comments</a> made by a given user.</li>
 <li><strong>Threads</strong> &ndash; Each new comment made <a href="https://hnrss.org/item?id=7864813">in a given thread</a>.</li>
 </ul>
@@ -74,13 +74,29 @@ https://hnrss.org/newest?q=git+OR+linux
 
 <h3 id="self-post-feeds">Self Post Feeds</h3>
 
-<p>Ask HN, Show HN, polls, and jobs are available:</p>
+<p>Ask HN, Show HN, and polls are available:</p>
 
 <pre>
 https://hnrss.org/ask
 https://hnrss.org/show
 https://hnrss.org/polls
+</pre>
+
+<h3 id="job-feeds">Job Feeds</h3>
+
+<p>Job opportunities from YC funded startups:</p>
+
+<pre>
 https://hnrss.org/jobs
+</pre>
+
+<p>Top level comments in threads created by the whoishiring bot:</p>
+
+<pre>
+https://hnrss.org/whoishiring/jobs # "Who is hiring?"
+https://hnrss.org/whoishiring/hired # "Who wants to be hired?"
+https://hnrss.org/whoishiring/freelance # "Freelancer? Seeking freelancer?"
+https://hnrss.org/whoishiring # All of the above
 </pre>
 
 <h3 id="user-feeds">User Feeds</h3>
@@ -181,6 +197,11 @@ example:</p>
 <h2 id="changelog">ChangeLog</h2>
 
 <ul>
+<li>January 2018
+
+<ul>
+<li>Add /whoishiring endpoint (via <a href="https://github.com/jaredandrews">@jaredandrews</a>)</li>
+</ul></li>
 <li>October 2017
 
 <ul>
@@ -240,13 +261,13 @@ example:</p>
 
 <h2 id="support">Support</h2>
 
-<p>hnrss.org is a labor of love, but if the project has made your job or
-hobby project easier and you want to show some gratitude, donations are
-very much appreciated. Thanks!</p>
+<p>While running hnrss is by no means “breaking the bank,” every little
+bit helps for when the monthly hosting bill or domain registration
+renewal comes due. So if the project has made your job or hobby
+project easier and you want to show some gratitude, donations are very
+much appreciated. Thanks!</p>
 
 <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZP9Q7QUNS3QYY"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a></p>
-
-<p><a href="https://donate.hnrss.org/"><img src="https://img.shields.io/badge/Donate-Bitcoin-yellow.svg" alt="Donate" /></a></p>
 
 <h2 id="credits-colophon">Credits &amp; Colophon</h2>
 

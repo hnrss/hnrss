@@ -31,22 +31,17 @@ def frontpage():
     return rss.response()
 
 @app.route('/whoishiring')
-def who_is_hiring():
-    # Get posts by user 'whoishiring'
+@app.route('/whoishiring/<include>')
+def who_is_hiring(include=None):
     api = API.using_request(request)
-    rss = RSS(api.who_is_hiring(), 'Who is Hiring - All', 'https://news.ycombinator.com/submitted?id=whoishiring')
-    return rss.response()
-
-@app.route('/whoishiring/jobs')
-def who_is_hiring_jobs():
-    api = API.using_request(request)
-    rss = RSS(api.who_is_hiring('jobs'), 'Who is Hiring - Who is Hiring', 'https://news.ycombinator.com/submitted?id=whoishiring')
-    return rss.response()
-
-@app.route('/whoishiring/freelance')
-def who_is_hiring_freelance():
-    api = API.using_request(request)
-    rss = RSS(api.who_is_hiring('freelance'), 'Who is Hiring - Freelance', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    if include is None:
+        rss = RSS(api.who_is_hiring('all'), 'whoishiring', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    elif include == 'jobs':
+        rss = RSS(api.who_is_hiring(include), 'whoishiring - Who is hiring?', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    elif include == 'hired':
+        rss = RSS(api.who_is_hiring(include), 'whoishiring - Who wants to be hired?', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    elif include == 'freelance':
+        rss = RSS(api.who_is_hiring(include), 'whoishiring - Freelancer? Seeking freelancer?', 'https://news.ycombinator.com/submitted?id=whoishiring')
     return rss.response()
 
 @app.route('/newcomments')

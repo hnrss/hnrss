@@ -99,33 +99,28 @@ class API(object):
 
     def who_is_hiring(self, include='all'):
         submitted = self.user('whoishiring', 'submitted')
+        hits = submitted.get('hits', [])
 
-        thread_ids = []
-        for item in submitted.get('hits'):
-            if 'Ask HN: Who is hiring?' in item[u'title'] and ('all' in include or 'jobs' in include):
-                thread_ids.append(item.get('objectID'))
-            elif 'Ask HN: Freelancer? Seeking freelancer?' in item[u'title'] and ('all' in include or 'freelance' in include):
-                thread_ids.append(item.get('objectID'))
+        if include == 'all':
+            thread_ids = [hit['objectID'] for hit in hits]
+        elif include == 'jobs':
+            thread_ids = [hit['objectID'] for hit in hits if 'Ask HN: Who is hiring?' in hit['title']]
+        elif include == 'hired':
+            thread_ids = [hit['objectID'] for hit in hits if 'Ask HN: Who wants to be hired?' in hit['title']]
+        elif include == 'freelance':
+            thread_ids = [hit['objectID'] for hit in hits if 'Ask HN: Freelancer? Seeking freelancer?' in hit['title']]
 
-        all_hits = []
-        all_responses = {}
-        for thread_id in thread_ids:
-            api = API()
-            api_response = api.comments(story_id=thread_id)
-            if 'hits' in api_response:
-                all_hits.extend(api_response.get('hits'))
+        thread_ids = map(int, thread_ids)
+        story_ids = ['story_%d' % thread_id for thread_id in thread_ids]
+        tags = 'comment,(%s)' % ','.join(story_ids)
 
-            all_responses = merge_two_dicts(api_response, all_responses)
+        response = self._request(tags)
+        slim_response = response.copy()
+        slim_response['hits'] = []
 
-        pseudo_response = {}
-        pseudo_response[u'hits'] = all_hits
-        pseudo_response['link_to'] = None
+        # Only include top-level comments
+        for hit in response.get('hits', []):
+            if hit['parent_id'] in thread_ids:
+                slim_response['hits'].append(hit)
 
-        return pseudo_response
-
-# TODO - put somewhere else?
-# from: https://stackoverflow.com/questions/38987/how-to-merge-two-dictionaries-in-a-single-expression
-def merge_two_dicts(x, y):
-    z = x.copy()   # start with x's keys and values
-    z.update(y)    # modifies z with y's keys and values & returns None
-    return z
+        return slim_response

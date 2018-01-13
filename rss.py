@@ -26,8 +26,8 @@ def insert_donation_request(guid):
         return '''
 <hr><p>hnrss is a labor of love, but if the project has made your job
 or hobby project easier and you want to show some gratitude, <a
-href="https://donate.hnrss.org/">donations are very much
-appreciated</a>. PayPal and Bitcoin both accepted. Thanks!</p>
+href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZP9Q7QUNS3QYY">donations are very much
+appreciated</a>. Thanks!</p>
         '''
     else:
         return ''

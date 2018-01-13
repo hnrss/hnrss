@@ -96,3 +96,31 @@ class API(object):
         elif include == 'threads':
             tags.append('comment')
         return self._request(','.join(tags))
+
+    def who_is_hiring(self, include='all'):
+        submitted = self.user('whoishiring', 'submitted')
+        hits = submitted.get('hits', [])
+
+        if include == 'all':
+            thread_ids = [hit['objectID'] for hit in hits]
+        elif include == 'jobs':
+            thread_ids = [hit['objectID'] for hit in hits if 'Ask HN: Who is hiring?' in hit['title']]
+        elif include == 'hired':
+            thread_ids = [hit['objectID'] for hit in hits if 'Ask HN: Who wants to be hired?' in hit['title']]
+        elif include == 'freelance':
+            thread_ids = [hit['objectID'] for hit in hits if 'Ask HN: Freelancer? Seeking freelancer?' in hit['title']]
+
+        thread_ids = map(int, thread_ids)
+        story_ids = ['story_%d' % thread_id for thread_id in thread_ids]
+        tags = 'comment,(%s)' % ','.join(story_ids)
+
+        response = self._request(tags)
+        slim_response = response.copy()
+        slim_response['hits'] = []
+
+        # Only include top-level comments
+        for hit in response.get('hits', []):
+            if hit['parent_id'] in thread_ids:
+                slim_response['hits'].append(hit)
+
+        return slim_response

@@ -30,6 +30,20 @@ def frontpage():
     rss = RSS(api.frontpage(), rss_title, 'https://news.ycombinator.com/')
     return rss.response()
 
+@app.route('/whoishiring')
+@app.route('/whoishiring/<include>')
+def who_is_hiring(include=None):
+    api = API.using_request(request)
+    if include is None:
+        rss = RSS(api.who_is_hiring('all'), 'whoishiring', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    elif include == 'jobs':
+        rss = RSS(api.who_is_hiring(include), 'whoishiring - Who is hiring?', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    elif include == 'hired':
+        rss = RSS(api.who_is_hiring(include), 'whoishiring - Who wants to be hired?', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    elif include == 'freelance':
+        rss = RSS(api.who_is_hiring(include), 'whoishiring - Freelancer? Seeking freelancer?', 'https://news.ycombinator.com/submitted?id=whoishiring')
+    return rss.response()
+
 @app.route('/newcomments')
 def new_comments():
     query = request.args.get('q')

@@ -1,4 +1,5 @@
 import requests
+from requests.exceptions import RequestException
 
 class API(object):
     base_url = 'https://hn.algolia.com/api/v1'
@@ -52,16 +53,22 @@ class API(object):
     def _request(self, tags):
         params = self.params.copy()
         params['tags'] = tags
-        resp = requests.get(
-            '%s/%s' % (self.base_url, self.endpoint),
-            params = params,
-        )
-        obj = resp.json().copy()
-        obj.update({
-            'link_to': self.link_to,
-            'description': self.description,
-        })
-        return obj
+        try:
+            resp = requests.get(
+                '%s/%s' % (self.base_url, self.endpoint),
+                params = params,
+                timeout = 10,
+            )
+            resp.raise_for_status()
+        except RequestException:
+            return {}
+        else:
+            obj = resp.json().copy()
+            obj.update({
+                'link_to': self.link_to,
+                'description': self.description,
+            })
+            return obj
 
     def newest(self):
         return self._request('(story,poll)')

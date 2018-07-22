@@ -61,5 +61,6 @@ pre {
 
 	pre {
 		padding-left: 60px;
+		overflow: visible;
 	}
 }

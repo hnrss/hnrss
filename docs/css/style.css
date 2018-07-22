@@ -1,28 +1,9 @@
-@import url(fonts.css);
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,700');
 
 body {
-	font: 16px/1.5 Go, sans-serif;
+	font: 15px/1.5 Rubik, sans-serif;
 	color: #333;
-	margin: 50px 25px;
-}
-
-@media (min-width: 650px) {
-	body {
-		width: 550px;
-		margin: 50px auto;
-	}
-}
-
-a { color: #333; }
-
-a:hover { color: #666; text-decoration: none; }
-
-code, pre { background: #eee; }
-
-code { padding: 3px 7px; }
-
-pre {
-	padding: 8px;
+	margin: 25px;
 }
 
 h1, h2, h3, h4, h5, h6, h7 {
@@ -37,4 +18,48 @@ h1, h2 {
 	margin-top: 20px;
 }
 
-p { margin-top: 0; }
+p {
+	margin-top: 0;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover {
+	color: #666;
+	text-decoration: none;
+}
+
+code, pre {
+	background: #eee;
+}
+
+code {
+	padding: 3px 7px;
+}
+
+pre {
+	padding: 8px;
+	overflow: scroll;
+}
+
+@media (min-width: 800px) {
+	body {
+		width: 768px;
+		margin: 50px auto;
+	}
+
+	h1, h2, h3, h4, p, ul {
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+
+	ul ul {
+		margin-left: 0;
+	}
+
+	pre {
+		padding-left: 60px;
+	}
+}

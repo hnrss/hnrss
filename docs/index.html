@@ -22,18 +22,59 @@
 </header>
 <h2 id="overview">Overview</h2>
 <p>hnrss.org provides custom, realtime RSS feeds for <a href="https://news.ycombinator.com/">Hacker News</a>.</p>
-<p>The following feeds are available:</p>
-<ul>
-<li><a href="#firehose-feeds"><strong>Firehose</strong></a> – Every new <a href="https://hnrss.org/newest">post</a> and <a href="https://hnrss.org/newcomments">comment</a> as it arrives.</li>
-<li><a href="#firehose-feeds"><strong>Front Page</strong></a> – <a href="https://hnrss.org/frontpage">Posts</a> appearing on the front page.</li>
-<li><a href="#search-feeds"><strong>Searches</strong></a> – New <a href="https://hnrss.org/newest?q=git">posts</a> and <a href="https://hnrss.org/newcomments?q=django">comments</a> matching a given search term.</li>
-<li><a href="#activity-parameters"><strong>Points</strong></a> – <a href="https://hnrss.org/newest?points=300">Posts</a> with more than N points.</li>
-<li><a href="#activity-parameters"><strong>Activity</strong></a> – <a href="https://hnrss.org/newest?comments=250">Posts</a> with more than N comments.</li>
-<li><a href="#self-post-feeds"><strong>Self-posts</strong></a> – All “<a href="https://hnrss.org/ask">Ask HN</a>” and “<a href="https://hnrss.org/show">Show HN</a>” posts, along with <a href="https://hnrss.org/polls">polls</a>.</li>
-<li><a href="#job-feeds"><strong>Jobs</strong></a> – All <a href="https://hnrss.org/jobs">hiring posts</a> made by YC startups along with comments from the monthly <a href="https://hnrss.org/whoishiring/jobs">“Who is hiring?”</a> threads.</li>
-<li><a href="#user-feeds"><strong>Users</strong></a> – New <a href="https://hnrss.org/submitted?id=tokenadult">posts</a> and <a href="https://hnrss.org/threads?id=tptacek">comments</a> made by a given user.</li>
-<li><a href="#thread-feeds"><strong>Threads</strong></a> – Each new comment made <a href="https://hnrss.org/item?id=7864813">in a given thread</a>.</li>
-</ul>
+<p>The following feed types are available:</p>
+<table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><a href="#firehose-feeds"><strong>Firehose</strong></a></td>
+<td>New <a href="https://hnrss.org/newest">posts</a> and <a href="https://hnrss.org/newcomments">comments</a> as they arrive.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><a href="#firehose-feeds"><strong>Front Page</strong></a></td>
+<td>New <a href="https://hnrss.org/frontpage">posts</a> as they appear on the front page.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><a href="#search-feeds"><strong>Searches</strong></a></td>
+<td>New <a href="https://hnrss.org/newest?q=redis">posts</a> and <a href="https://hnrss.org/newcomments?q=linux">comments</a> matching a given search term.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><a href="#reply-feeds"><strong>Replies</strong></a></td>
+<td>New comments in reply to a particular <a href="https://hnrss.org/replies?id=jerf">user</a> or <a href="https://hnrss.org/replies?id=17752464">comment</a>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><a href="#activity-parameters"><strong>Points</strong></a></td>
+<td>New <a href="https://hnrss.org/newest?points=300">posts</a> with more than N points.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><a href="#activity-parameters"><strong>Activity</strong></a></td>
+<td>New <a href="https://hnrss.org/newest?comments=250">posts</a> with more than N comments.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><a href="#self-post-feeds"><strong>Self-posts</strong></a></td>
+<td>New “<a href="https://hnrss.org/ask">Ask HN</a>” and “<a href="https://hnrss.org/show">Show HN</a>” posts, along with <a href="https://hnrss.org/polls">polls</a>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><a href="#job-feeds"><strong>Jobs</strong></a></td>
+<td>New <a href="https://hnrss.org/jobs">hiring posts</a> made by YC startups along with comments from the monthly <a href="https://hnrss.org/whoishiring/jobs">“Who is hiring?”</a> threads.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><a href="#user-feeds"><strong>Users</strong></a></td>
+<td>New <a href="https://hnrss.org/submitted?id=jacquesm">posts</a> and <a href="https://hnrss.org/threads?id=tptacek">comments</a> made by a given user.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><a href="#thread-feeds"><strong>Threads</strong></a></td>
+<td>New comments made <a href="https://hnrss.org/item?id=17821181">in a given thread</a>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><a href="#feed-formats"><strong>Formats</strong></a></td>
+<td>In addition to RSS, all of the above are also available in <a href="https://hnrss.org/newest.atom">Atom</a> and <a href="https://hnrss.org/newest.jsonfeed">JSON Feed</a> formats.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="details">Details</h2>
 <p>Each feed is <a href="https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fhnrss.org%2Fnewest">valid RSS</a> served over <a href="https://www.ssllabs.com/ssltest/analyze.html?d=hnrss.org">HTTPS</a>.</p>
 <h3 id="firehose-feeds">Firehose Feeds</h3>
@@ -56,6 +97,15 @@ https://hnrss.org/newcomments?q=WordPress
 <p>If you want a single search feed but multiple keywords, separate the keywords with &quot; OR &quot;:</p>
 <pre>
 https://hnrss.org/newest?q=git+OR+linux
+</pre>
+<h3 id="reply-feeds">Reply Feeds</h3>
+<p>Keep an eye on replies to your comments:</p>
+<pre>
+https://hnrss.org/replies?id=jerf
+</pre>
+<p>Use a comment ID to follow replies of a particular comment:</p>
+<pre>
+https://hnrss.org/replies?id=17752464
 </pre>
 <h3 id="self-post-feeds">Self Post Feeds</h3>
 <p>Ask HN, Show HN, and polls are available:</p>
@@ -82,6 +132,10 @@ https://hnrss.org/whoishiring/freelance
 
 # All of the above
 https://hnrss.org/whoishiring
+</pre>
+<p>If you’re interested in something in particular, you can apply a <code>q=KEYWORD</code> parameter to only return relevant comments. For example, filter the top-level “Who is hiring?” comments to only those containing “React Native”:</p>
+<pre>
+https://hnrss.org/whoishiring/jobs?q=React+Native
 </pre>
 <h3 id="user-feeds">User Feeds</h3>
 <p>If you don’t want to miss a post or comment by a given user, you can subscribe to that user’s feed:</p>
@@ -137,12 +191,30 @@ https://hnrss.org/newest?q=WordPress&search_attrs=default
 <p>By default, feeds return 20 RSS items. This can be increased via the <code>count=N</code> parameter:</p>
 <pre>https://hnrss.org/newest?count=50</pre>
 <p>There is a hardcoded limit of 100 entries, so keep that in mind.</p>
-<h2 id="changelog">ChangeLog</h2>
+<h4 id="feed-formats">Feed Formats</h4>
+<p>By default, feeds come back as RSS. But if you add “.atom” or “.jsonfeed” to any endpoint you’ll receive the contents in <a href="https://validator.w3.org/feed/docs/atom.html">Atom</a> or <a href="https://jsonfeed.org/">JSON Feed</a>, respectively.</p>
+<pre>
+# The front page as Atom
+https://hnrss.org/frontpage.atom
+
+# "Ask HN" with 10 or more comments as JSON Feed
+https://hnrss.org/ask.jsonfeed?comments=10
+</pre>
+<p>Note: These formats are a lot less battle-tested than the RSS format. If you see any wonkiness or they don’t play nicely with your feed reader, please <a href="https://github.com/edavis/hnrss/issues/new">open an issue</a> with as much information as possible. Thanks!</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="section">2018</h3>
 <ul>
+<li>August/September 2018
+<ul>
+<li>Full changelog entry coming soon</li>
+</ul></li>
 <li>January 2018
 <ul>
 <li>Add /whoishiring endpoint (h/t <a href="https://github.com/edavis/hnrss/pull/23">@jaredandrews</a>)</li>
 </ul></li>
+</ul>
+<h3 id="section-1">2017</h3>
+<ul>
 <li>October 2017
 <ul>
 <li>Add /jobs endpoint.</li>
@@ -163,6 +235,9 @@ https://hnrss.org/newest?q=WordPress&search_attrs=default
 <li>Add gzip support.</li>
 <li>Leave Rackspace, deploy on DigitalOcean.</li>
 </ul></li>
+</ul>
+<h3 id="section-2">2016</h3>
+<ul>
 <li>September 2016
 <ul>
 <li>Add support for HTTP caching headers.</li>
@@ -175,11 +250,17 @@ https://hnrss.org/newest?q=WordPress&search_attrs=default
 <ul>
 <li>Add /frontpage.</li>
 </ul></li>
+</ul>
+<h3 id="section-3">2015</h3>
+<ul>
 <li>June 2015
 <ul>
 <li>Set <code>isPermaLink=false</code> on <code>&lt;guid&gt;</code>.</li>
 <li>By default, searches now look at post titles.</li>
 </ul></li>
+</ul>
+<h3 id="section-4">2014</h3>
+<ul>
 <li>June 2014
 <ul>
 <li>Major rewrite, use different URL structure.</li>
@@ -190,11 +271,26 @@ https://hnrss.org/newest?q=WordPress&search_attrs=default
 </ul></li>
 </ul>
 <h2 id="support">Support</h2>
-<p>While running hnrss is by no means “breaking the bank,” every little bit helps for when the monthly hosting bill or domain registration renewal comes due. So if the project has made your job or hobby project easier and you want to show some gratitude, donations are very much appreciated. Thanks!</p>
-<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZP9Q7QUNS3QYY"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a></p>
-<h2 id="credits-colophon">Credits &amp; Colophon</h2>
-<p>hnrss.org uses <a href="https://hn.algolia.com/api">Algolia</a> to query Hacker News and generate the feeds. The code is a <a href="http://flask.pocoo.org/">Flask</a> app. It runs on <a href="http://nginx.org/">nginx</a> with <a href="http://varnish-cache.org/">Varnish</a> providing a cache layer and <a href="https://letsencrypt.org/">Let’s Encrypt</a> providing HTTPS.</p>
-<p>This documentation is built with <a href="https://gohugo.io/">Hugo</a> and hosted on Github Pages.</p>
-<p>The source of <a href="https://github.com/edavis/hnrss">the app</a> and <a href="https://github.com/edavis/hnrss-docs">the documentation</a> are hosted on Github.</p>
+<p>If hnrss.org has made your job or hobby project easier, and you want to show some gratitude, <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZP9Q7QUNS3QYY">donations are very much appreciated</a>.</p>
+<p>Another way to support hnrss.org is to use this <a href="https://m.do.co/c/1c19f7d73361">DigitalOcean referral link</a> and receive $10 in credit. Once you’ve spent $25 with DigitalOcean, hnrss.org will receive $25 in credit.</p>
+<p>Thanks!</p>
+<h2 id="credits">Credits</h2>
+<p>Thanks to <a href="https://www.algolia.com/">Algolia</a> for providing their <a href="https://hn.algolia.com/api">REST API</a>. Without it, hnrss.org simply would not exist.</p>
+<p>Thanks to <a href="https://github.com/jaredandrews">Jared Andrews</a> for the <a href="https://github.com/edavis/hnrss/pull/23">PR</a> that created the /whoishiring/ endpoints.</p>
+<p>Thanks to <a href="https://github.com/zmwangx">Zhiming Wang</a> for adding Python 3 support.</p>
+<p>Thanks to <a href="https://github.com/grantjenks">Grant Jenks</a> for the idea of adding the Article URL and Points to the description.</p>
+<p>Thanks to <a href="https://github.com/cagrimmett">Chuck Grimmett</a> for being a sounding board when it comes to adding new features to hnrss.org as well as suggesting the /jobs endpoint.</p>
+<p>And many, many thanks to all those who have donated in support of the project over the years. You all mean the world to me.</p>
+<h2 id="colophon">Colophon</h2>
+<p>hnrss.org is served by nginx on DigitalOcean. HTTPS is provided by Let’s Encrypt. DNS is provided by Namecheap.</p>
+<p>As of September 2018, the feeds are generated using the <a href="https://gin-gonic.github.io/gin/">Gin</a> web framework. From May 2014 to August 2018, the feeds were generated using the <a href="http://flask.pocoo.org/">Flask</a> web framework.</p>
+<h2 id="repositories">Repositories</h2>
+<p>A brief primer on the various repositories that make up hnrss.org:</p>
+<p>When hnrss.org was created in May 2014, code and documentation lived inside the <a href="https://github.com/edavis/hnrss">edavis/hnrss</a> repository.</p>
+<p>In April 2017, the documentation was revamped, migrated into Hugo, and was given its own repository at <a href="https://github.com/edavis/hnrss-docs">edavis/hnrss-docs</a>. The built assets were copied into the <code>docs/</code> folder on <a href="https://github.com/edavis/hnrss">edavis/hnrss</a> and published at <a href="https://edavis.github.io/hnrss/" class="uri">https://edavis.github.io/hnrss/</a>.</p>
+<p>In August/September 2018, hnrss.org underwent a rewrite from Flask to Gin. This new code lives at <a href="https://github.com/edavis/go-hnrss">edavis/go-hnrss</a>.</p>
+<p>So, as of September 2018, that’s the state of play. The documentation source lives at <a href="https://github.com/edavis/hnrss-docs">edavis/hnrss-docs</a>. The Gin source that powers hnrss.org lives at <a href="https://github.com/edavis/go-hnrss">edavis/go-hnrss</a>.</p>
+<p><a href="https://github.com/edavis/hnrss">edavis/hnrss</a> contains the Flask code that powered the site from May 2014 to August 2018 as well as the <code>docs/</code> folder that contains the built HTML copied from <a href="https://github.com/edavis/hnrss-docs">edavis/hnrss-docs</a>.</p>
+<p>At some point I’d like to simplify all of this and run everything out of one repository, but it’ll do for now.</p>
 </body>
 </html>

@@ -44,13 +44,42 @@ pre {
 	overflow: scroll;
 }
 
+.root {
+	color: #777;
+}
+
+pre, code {
+	background-color: #EBF9FF;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: separate;
+}
+
+tr.odd {
+	background-color: #EBF9FF;
+}
+
+td {
+	padding: 10px;
+}
+
+col {
+	width: initial !important;
+}
+
+tr td:nth-child(1) {
+	width: 25%;
+}
+
 @media (min-width: 800px) {
 	body {
 		width: 768px;
 		margin: 50px auto;
 	}
 
-	h1, h2, h3, h4, p, ul {
+	h1, h2, h3, h4, p, ul, table {
 		margin-left: 60px;
 		margin-right: 60px;
 	}

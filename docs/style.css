@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,700');
+
+body {
+	font: 15px/1.5 Rubik, sans-serif;
+	color: #333;
+	margin: 25px;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+	margin-top: 30px;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	border-bottom: thin solid #ddd;
+}
+
+h1, h2 {
+	border-bottom: 0;
+	margin-top: 20px;
+}
+
+p {
+	margin-top: 0;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover {
+	color: #666;
+	text-decoration: none;
+}
+
+code, pre {
+	background: #eee;
+}
+
+code {
+	padding: 3px 7px;
+}
+
+pre {
+	padding: 8px;
+	overflow: scroll;
+}
+
+@media (min-width: 800px) {
+	body {
+		width: 768px;
+		margin: 50px auto;
+	}
+
+	h1, h2, h3, h4, p, ul {
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+
+	ul ul {
+		margin-left: 0;
+	}
+
+	pre {
+		padding-left: 60px;
+		overflow: visible;
+	}
+}

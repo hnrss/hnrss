@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Hacker News RSS</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Hacker News RSS</h1>
+</header>
+<h2 id="overview">Overview</h2>
+<p>hnrss.org provides custom, realtime RSS feeds for <a href="https://news.ycombinator.com/">Hacker News</a>.</p>
+<p>The following feeds are available:</p>
+<ul>
+<li><a href="#firehose-feeds"><strong>Firehose</strong></a> – Every new <a href="https://hnrss.org/newest">post</a> and <a href="https://hnrss.org/newcomments">comment</a> as it arrives.</li>
+<li><a href="#firehose-feeds"><strong>Front Page</strong></a> – <a href="https://hnrss.org/frontpage">Posts</a> appearing on the front page.</li>
+<li><a href="#search-feeds"><strong>Searches</strong></a> – New <a href="https://hnrss.org/newest?q=git">posts</a> and <a href="https://hnrss.org/newcomments?q=django">comments</a> matching a given search term.</li>
+<li><a href="#activity-parameters"><strong>Points</strong></a> – <a href="https://hnrss.org/newest?points=300">Posts</a> with more than N points.</li>
+<li><a href="#activity-parameters"><strong>Activity</strong></a> – <a href="https://hnrss.org/newest?comments=250">Posts</a> with more than N comments.</li>
+<li><a href="#self-post-feeds"><strong>Self-posts</strong></a> – All “<a href="https://hnrss.org/ask">Ask HN</a>” and “<a href="https://hnrss.org/show">Show HN</a>” posts, along with <a href="https://hnrss.org/polls">polls</a>.</li>
+<li><a href="#job-feeds"><strong>Jobs</strong></a> – All <a href="https://hnrss.org/jobs">hiring posts</a> made by YC startups along with comments from the monthly <a href="https://hnrss.org/whoishiring/jobs">“Who is hiring?”</a> threads.</li>
+<li><a href="#user-feeds"><strong>Users</strong></a> – New <a href="https://hnrss.org/submitted?id=tokenadult">posts</a> and <a href="https://hnrss.org/threads?id=tptacek">comments</a> made by a given user.</li>
+<li><a href="#thread-feeds"><strong>Threads</strong></a> – Each new comment made <a href="https://hnrss.org/item?id=7864813">in a given thread</a>.</li>
+</ul>
+<h2 id="details">Details</h2>
+<p>Each feed is <a href="https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fhnrss.org%2Fnewest">valid RSS</a> served over <a href="https://www.ssllabs.com/ssltest/analyze.html?d=hnrss.org">HTTPS</a>.</p>
+<h3 id="firehose-feeds">Firehose Feeds</h3>
+<p>The “firehose” feeds contain all new posts and comments as they appear on Hacker News:</p>
+<pre>
+https://hnrss.org/newest
+https://hnrss.org/newcomments
+</pre>
+<p>For just the posts that have appeared on the front page:</p>
+<pre>
+https://hnrss.org/frontpage
+</pre>
+<p>If the firehose feeds are a bit too noisy for you, <a href="#activity-parameters">read below</a> on filtering them with the <code>points</code> and/or <code>comments</code> parameters.</p>
+<h3 id="search-feeds">Search Feeds</h3>
+<p>You can get a feed of new posts and/or comments containing keywords by using the <code>q=KEYWORD</code> parameter. For example:</p>
+<pre>
+https://hnrss.org/newest?q=Django
+https://hnrss.org/newcomments?q=WordPress
+</pre>
+<p>If you want a single search feed but multiple keywords, separate the keywords with &quot; OR &quot;:</p>
+<pre>
+https://hnrss.org/newest?q=git+OR+linux
+</pre>
+<h3 id="self-post-feeds">Self Post Feeds</h3>
+<p>Ask HN, Show HN, and polls are available:</p>
+<pre>
+https://hnrss.org/ask
+https://hnrss.org/show
+https://hnrss.org/polls
+</pre>
+<h3 id="job-feeds">Job Feeds</h3>
+<p>Job opportunities from YC funded startups:</p>
+<pre>
+https://hnrss.org/jobs
+</pre>
+<p>Top level comments in threads created by the whoishiring bot:</p>
+<pre>
+# Comments from "Who is hiring?" threads
+https://hnrss.org/whoishiring/jobs
+
+# Comments from "Who wants to be hired?" threads
+https://hnrss.org/whoishiring/hired
+
+# Comments from "Freelancer? Seeking freelancer?" threads
+https://hnrss.org/whoishiring/freelance
+
+# All of the above
+https://hnrss.org/whoishiring
+</pre>
+<h3 id="user-feeds">User Feeds</h3>
+<p>If you don’t want to miss a post or comment by a given user, you can subscribe to that user’s feed:</p>
+<pre>
+https://hnrss.org/submitted?id=USERNAME # posts
+https://hnrss.org/threads?id=USERNAME   # comments
+https://hnrss.org/user?id=USERNAME      # everything
+</pre>
+<h3 id="thread-feeds">Thread Feeds</h3>
+<p>A feed of new comments on a particular post can be found at:</p>
+<pre>
+https://hnrss.org/item?id=THREAD_ID
+</pre>
+<p>With <code>THREAD_ID</code> the numerical ID found in the URL when viewing the comments page.</p>
+<h3 id="feed-options">Feed Options</h3>
+<p>You can modify any feed’s output using URL parameters. Multiple parameters can be applied at the same time by joining them with an ampersand.</p>
+<h4 id="activity-parameters">Activity Parameters</h4>
+<p>You can apply a <code>points=N</code> or <code>comments=N</code> parameter to any feed to filter the results so only entries with more than N points or comments are shown:</p>
+<pre>
+https://hnrss.org/newest?points=100
+https://hnrss.org/ask?comments=25
+</pre>
+<p>You can also combine both parameters:</p>
+<pre>
+https://hnrss.org/show?points=100&comments=25
+</pre>
+<p>Unfortunately, <code>/newcomments</code> <a href="https://github.com/algolia/hn-search/issues/55#issuecomment-73599729">does not work</a> with a <code>points=N</code> parameter.</p>
+<h4 id="search-parameter">Search Parameter</h4>
+<p>By default, searches on posts only look at titles. If you want to search against the submitted URLs themselves, use the <code>search_attrs</code> parameter.</p>
+<p>Here are some examples:</p>
+<pre>
+# Search for posts with "WordPress" in the title only
+https://hnrss.org/newest?q=WordPress
+
+# Search for posts with 'WordPress' in the URL only
+https://hnrss.org/newest?q=WordPress&search_attrs=url
+
+# Search for posts with 'WordPress' in the title or URL
+https://hnrss.org/newest?q=WordPress&search_attrs=title,url
+
+# Don't restrict search attributes at all. This searches for posts
+# containing 'WordPress' in all attributes indexed by Algolia. This was
+# the behavior of searches prior to June 3, 2015
+https://hnrss.org/newest?q=WordPress&search_attrs=default
+</pre>
+<h4 id="link-parameter">Link Parameter</h4>
+<p>By default, the RSS <code>&lt;link&gt;</code> element points to the submitted article’s URL. The <code>&lt;link&gt;</code> element can be changed to point to the Hacker News comment page by appending <code>link=comments</code> to the end of the URL. For example:</p>
+<pre>https://hnrss.org/newest?link=comments</pre>
+<h4 id="description-parameter">Description Parameter</h4>
+<p>You can disable the <code>&lt;description&gt;</code> element entirely by passing the <code>description=0</code> parameter:</p>
+<pre>https://hnrss.org/newest?description=0</pre>
+<h4 id="count-parameter">Count Parameter</h4>
+<p>By default, feeds return 20 RSS items. This can be increased via the <code>count=N</code> parameter:</p>
+<pre>https://hnrss.org/newest?count=50</pre>
+<p>There is a hardcoded limit of 100 entries, so keep that in mind.</p>
+<h2 id="changelog">ChangeLog</h2>
+<ul>
+<li>January 2018
+<ul>
+<li>Add /whoishiring endpoint (h/t <a href="https://github.com/edavis/hnrss/pull/23">@jaredandrews</a>)</li>
+</ul></li>
+<li>October 2017
+<ul>
+<li>Add /jobs endpoint.</li>
+</ul></li>
+<li>April 2017
+<ul>
+<li>Add python3 support.</li>
+<li>Improve handling of search feeds with multiple queries.</li>
+<li>Cleanup docs and move them to Hugo.</li>
+<li>Fix warnings from the w3.org feed validator.</li>
+</ul></li>
+<li>March 2017
+<ul>
+<li>Add support for multiple keywords when searching.</li>
+</ul></li>
+<li>February 2017
+<ul>
+<li>Add gzip support.</li>
+<li>Leave Rackspace, deploy on DigitalOcean.</li>
+</ul></li>
+<li>September 2016
+<ul>
+<li>Add support for HTTP caching headers.</li>
+</ul></li>
+<li>July 2016
+<ul>
+<li>Leave Heroku, deploy on Rackspace.</li>
+</ul></li>
+<li>April 2016
+<ul>
+<li>Add /frontpage.</li>
+</ul></li>
+<li>June 2015
+<ul>
+<li>Set <code>isPermaLink=false</code> on <code>&lt;guid&gt;</code>.</li>
+<li>By default, searches now look at post titles.</li>
+</ul></li>
+<li>June 2014
+<ul>
+<li>Major rewrite, use different URL structure.</li>
+</ul></li>
+<li>May 2014
+<ul>
+<li>Launched hnrss.org on Heroku.</li>
+</ul></li>
+</ul>
+<h2 id="support">Support</h2>
+<p>While running hnrss is by no means “breaking the bank,” every little bit helps for when the monthly hosting bill or domain registration renewal comes due. So if the project has made your job or hobby project easier and you want to show some gratitude, donations are very much appreciated. Thanks!</p>
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZP9Q7QUNS3QYY"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a></p>
+<h2 id="credits-colophon">Credits &amp; Colophon</h2>
+<p>hnrss.org uses <a href="https://hn.algolia.com/api">Algolia</a> to query Hacker News and generate the feeds. The code is a <a href="http://flask.pocoo.org/">Flask</a> app. It runs on <a href="http://nginx.org/">nginx</a> with <a href="http://varnish-cache.org/">Varnish</a> providing a cache layer and <a href="https://letsencrypt.org/">Let’s Encrypt</a> providing HTTPS.</p>
+<p>This documentation is built with <a href="https://gohugo.io/">Hugo</a> and hosted on Github Pages.</p>
+<p>The source of <a href="https://github.com/edavis/hnrss">the app</a> and <a href="https://github.com/edavis/hnrss-docs">the documentation</a> are hosted on Github.</p>
+</body>
+</html>

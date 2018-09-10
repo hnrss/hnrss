@@ -18,6 +18,15 @@ h1, h2 {
 	margin-top: 20px;
 }
 
+.new {
+	font-size: 11px;
+	text-transform: uppercase;
+	color: orangered;
+	font-weight: normal;
+}
+
+sup.new { font-size: 8.5px; }
+
 p {
 	margin-top: 0;
 }

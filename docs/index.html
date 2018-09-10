@@ -11,7 +11,7 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="style.css?v=20180908_01" />
+  <link rel="stylesheet" href="style.css?v=20180910_01" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -42,7 +42,7 @@
 <td>New <a href="https://hnrss.org/newest?q=redis">posts</a> and <a href="https://hnrss.org/newcomments?q=linux">comments</a> matching a given search term.</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;"><a href="#reply-feeds"><strong>Replies</strong></a></td>
+<td style="text-align: right;"><a href="#reply-feeds"><strong>Replies</strong></a> <sup class=new>new</sup></td>
 <td>New comments in reply to a particular <a href="https://hnrss.org/replies?id=jerf">user</a> or <a href="https://hnrss.org/replies?id=17752464">comment</a>.</td>
 </tr>
 <tr class="odd">
@@ -70,7 +70,7 @@
 <td>New comments made <a href="https://hnrss.org/item?id=17821181">in a given thread</a>.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><a href="#feed-formats"><strong>Formats</strong></a></td>
+<td style="text-align: right;"><a href="#feed-formats"><strong>Formats</strong></a> <sup class=new>new</sup></td>
 <td>In addition to RSS, all of the above are also available in <a href="https://hnrss.org/newest.atom">Atom</a> and <a href="https://hnrss.org/newest.jsonfeed">JSON Feed</a> formats.</td>
 </tr>
 </tbody>
@@ -98,7 +98,7 @@ https://hnrss.org/newcomments?q=WordPress
 <pre>
 https://hnrss.org/newest?q=git+OR+linux
 </pre>
-<h3 id="reply-feeds">Reply Feeds</h3>
+<h3 id="reply-feeds-new">Reply Feeds <sup class=new>new</sup></h3>
 <p>Keep an eye on replies to your comments:</p>
 <pre>
 https://hnrss.org/replies?id=jerf
@@ -133,7 +133,7 @@ https://hnrss.org/whoishiring/freelance
 # All of the above
 https://hnrss.org/whoishiring
 </pre>
-<p>If you’re interested in something in particular, you can apply a <code>q=KEYWORD</code> parameter to only return relevant comments. For example, filter the top-level “Who is hiring?” comments to only those containing “React Native”:</p>
+<p><span class="new">new</span> If you’re interested in something in particular, you can apply a <code>q=KEYWORD</code> parameter to only return relevant comments. For example, filter the top-level “Who is hiring?” comments to only those containing “React Native”:</p>
 <pre>
 https://hnrss.org/whoishiring/jobs?q=React+Native
 </pre>
@@ -191,7 +191,7 @@ https://hnrss.org/newest?q=WordPress&search_attrs=default
 <p>By default, feeds return 20 RSS items. This can be increased via the <code>count=N</code> parameter:</p>
 <pre>https://hnrss.org/newest?count=50</pre>
 <p>There is a hardcoded limit of 100 entries, so keep that in mind.</p>
-<h4 id="feed-formats">Feed Formats</h4>
+<h4 id="feed-formats-new">Feed Formats <sup class=new>new</sup></h4>
 <p>By default, feeds come back as RSS. But if you add “.atom” or “.jsonfeed” to any endpoint you’ll receive the contents in <a href="https://validator.w3.org/feed/docs/atom.html">Atom</a> or <a href="https://jsonfeed.org/">JSON Feed</a>, respectively.</p>
 <pre>
 # The front page as Atom
@@ -272,7 +272,7 @@ https://hnrss.org/ask.jsonfeed?comments=10
 </ul>
 <h2 id="support">Support</h2>
 <p>If hnrss.org has made your job or hobby project easier, and you want to show some gratitude, <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZP9Q7QUNS3QYY">donations are very much appreciated</a>.</p>
-<p>Another way to support hnrss.org is to use this <a href="https://m.do.co/c/1c19f7d73361">DigitalOcean referral link</a> and receive $10 in credit. Once you’ve spent $25 with DigitalOcean, hnrss.org will receive $25 in credit.</p>
+<p><span class="new">new</span> Another way to support hnrss.org is to use this <a href="https://m.do.co/c/1c19f7d73361">DigitalOcean referral link</a> and receive $10 in credit. Once you’ve spent $25 with DigitalOcean, hnrss.org will receive $25 in credit.</p>
 <p>Thanks!</p>
 <h2 id="credits">Credits</h2>
 <p>Thanks to <a href="https://www.algolia.com/">Algolia</a> for providing their <a href="https://hn.algolia.com/api">REST API</a>. Without it, hnrss.org simply would not exist.</p>

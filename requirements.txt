@@ -5,7 +5,7 @@ Werkzeug==0.9.4
 gunicorn==18.0
 itsdangerous==0.24
 lxml==3.3.5
-requests==2.3.0
+requests==2.20.0
 flask-compress==1.4.0
 ## The following requirements were added by pip freeze:
 appdirs==1.4.0

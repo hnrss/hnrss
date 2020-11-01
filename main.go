@@ -52,7 +52,7 @@ func main() {
 		c.String(http.StatusOK, "User-agent: *\nDisallow:\n")
 	})
 	r.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusFound, "https://edavis.github.io/hnrss/")
+		c.Redirect(http.StatusFound, "https://hnrss.github.io/")
 	})
 
 	flag.Parse()

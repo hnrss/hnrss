@@ -40,6 +40,7 @@ func main() {
 	registerEndpoint(r, "/submitted", UserSubmitted)
 	registerEndpoint(r, "/replies", Replies)
 	registerEndpoint(r, "/item", Item)
+	registerEndpoint(r, "/favorites", Favorites)
 	registerEndpoint(r, "/whoishiring/jobs", SeekingEmployees)
 	registerEndpoint(r, "/whoishiring/hired", SeekingEmployers)
 	registerEndpoint(r, "/whoishiring/freelance", SeekingFreelance)

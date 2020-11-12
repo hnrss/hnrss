@@ -41,6 +41,7 @@ func main() {
 	registerEndpoint(r, "/replies", Replies)
 	registerEndpoint(r, "/item", Item)
 	registerEndpoint(r, "/favorites", Favorites)
+	registerEndpoint(r, "/bestcomments", BestComments)
 	registerEndpoint(r, "/whoishiring/jobs", SeekingEmployees)
 	registerEndpoint(r, "/whoishiring/hired", SeekingEmployers)
 	registerEndpoint(r, "/whoishiring/freelance", SeekingFreelance)

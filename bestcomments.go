@@ -9,16 +9,12 @@ import (
 	"strings"
 )
 
-const (
-	hackerNewsFavoritesBase = "https://news.ycombinator.com/favorites?id="
-)
-
-func Favorites(c *gin.Context) {
+func BestComments(c *gin.Context) {
 	var sp SearchParams
 	var op OutputParams
 	ParseRequest(c, &sp, &op)
 
-	resp, err := algoliaClient.Get(hackerNewsFavoritesBase + sp.ID)
+	resp, err := algoliaClient.Get("https://news.ycombinator.com/bestcomments")
 	if err != nil {
 		c.Error(err)
 		c.String(http.StatusBadGateway, err.Error())
@@ -34,15 +30,15 @@ func Favorites(c *gin.Context) {
 		return
 	}
 
-	var sids []string
+	var oids []string
 	for _, id := range parsed.Thing {
-		sids = append(sids, "story_"+id)
+		oids = append(oids, fmt.Sprintf("objectID:\"%s\"", id))
 	}
-	sp.Tags = fmt.Sprintf("story,(%s)", strings.Join(sids, ","))
-	sp.Count = strconv.Itoa(len(sids))
+	sp.Filters = strings.Join(oids, " OR ")
+	sp.Count = strconv.Itoa(len(oids))
 
-	op.Title = fmt.Sprintf("Hacker News - %s's favorites", sp.ID)
-	op.Link = hackerNewsFavoritesBase + sp.ID
+	op.Title = fmt.Sprintf("Hacker News: Best Comments")
+	op.Link = "https://news.ycombinator.com/bestcomments"
 
 	Generate(c, &sp, &op)
 }

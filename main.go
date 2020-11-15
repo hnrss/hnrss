@@ -42,7 +42,7 @@ func main() {
 	registerEndpoint(r, "/item", Item)
 	registerEndpoint(r, "/favorites", Favorites)
 	registerEndpoint(r, "/bestcomments", BestComments)
-	registerEndpoint(r, "/classic", Classic)
+	registerEndpoint(r, "/classic", Special("https://news.ycombinator.com/classic", "Hacker News: Classic"))
 	registerEndpoint(r, "/best", Special("https://news.ycombinator.com/best", "Hacker News: Best"))
 	registerEndpoint(r, "/invited", Special("https://news.ycombinator.com/invited", "Hacker News: Invited"))
 	registerEndpoint(r, "/active", Special("https://news.ycombinator.com/active", "Hacker News: Active"))

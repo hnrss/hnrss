@@ -27,6 +27,7 @@ type SearchParams struct {
 	Filters          string
 	Points           string `form:"points"`
 	ID               string `form:"id"`
+	Author           string `form:"author"`
 	Comments         string `form:"comments"`
 	SearchAttributes string `form:"search_attrs"`
 	Count            string `form:"count"`

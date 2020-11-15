@@ -221,6 +221,9 @@ func Item(c *gin.Context) {
 	ParseRequest(c, &sp, &op)
 
 	sp.Tags = "comment,story_" + sp.ID
+	if (sp.Author != "") {
+		sp.Tags = fmt.Sprintf("%s,author_%s", sp.Tags, sp.Author)
+	}
 	sp.SearchAttributes = "default"
 
 	// op.Title is set inside Generate to avoid the overhead of a

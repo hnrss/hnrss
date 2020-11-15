@@ -38,7 +38,7 @@ func Favorites(c *gin.Context) {
 	for _, id := range parsed.Thing {
 		sids = append(sids, "story_"+id)
 	}
-	sp.Tags = fmt.Sprintf("story,(%s)", strings.Join(sids, ","))
+	sp.Tags = fmt.Sprintf("(story,poll),(%s)", strings.Join(sids, ","))
 	sp.Count = strconv.Itoa(len(sids))
 
 	op.Title = fmt.Sprintf("Hacker News - %s's favorites", sp.ID)

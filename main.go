@@ -14,7 +14,8 @@ import (
 )
 
 var (
-	bindAddr    = flag.String("bind", "127.0.0.1:9000", "HOST:PORT")
+	bindAddr     = flag.String("bind", "127.0.0.1:9000", "HOST:PORT")
+	rootRedirect = flag.String("rootRedirect", "https://hnrss.github.io/", "URL to redirect on 'GET /'")
 	buildString string
 )
 
@@ -59,7 +60,7 @@ func main() {
 		c.String(http.StatusOK, "User-agent: *\nDisallow:\n")
 	})
 	r.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusFound, "https://hnrss.github.io/")
+		c.Redirect(http.StatusFound, *rootRedirect)
 	})
 
 	flag.Parse()

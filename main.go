@@ -45,6 +45,7 @@ func main() {
 	registerEndpoint(r, "/classic", Special("https://news.ycombinator.com/classic", "Hacker News: Classic"))
 	registerEndpoint(r, "/best", Special("https://news.ycombinator.com/best", "Hacker News: Best"))
 	registerEndpoint(r, "/invited", Special("https://news.ycombinator.com/invited", "Hacker News: Invited"))
+	registerEndpoint(r, "/pool", Special("https://news.ycombinator.com/pool", "Hacker News: Pool"))
 	registerEndpoint(r, "/active", Special("https://news.ycombinator.com/active", "Hacker News: Active"))
 	registerEndpoint(r, "/launches", Special("https://news.ycombinator.com/launches", "Hacker News: Launches"))
 	registerEndpoint(r, "/whoishiring/jobs", SeekingEmployees)

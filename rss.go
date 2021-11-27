@@ -1,5 +1,7 @@
 package main
 
+const descriptionDisabledFlag = "0"
+
 // http://cyber.harvard.edu/rss/rss.html
 type RSS struct {
 	XMLName       string    `xml:"rss"`
@@ -23,7 +25,7 @@ type RSSPermalink struct {
 
 type RSSItem struct {
 	Title       CDATA        `xml:"title"`
-	Description CDATA        `xml:"description"`
+	Description *CDATA       `xml:"description,omitempty"`
 	Published   string       `xml:"pubDate"`
 	Link        string       `xml:"link"`
 	Author      string       `xml:"dc:creator"`
@@ -47,14 +49,18 @@ func NewRSS(results *AlgoliaSearchResponse, op *OutputParams) *RSS {
 
 	for _, hit := range results.Hits {
 		item := RSSItem{
-			Title:       CDATA{hit.GetTitle()},
-			Link:        hit.GetURL(op.LinkTo),
-			Description: CDATA{hit.GetDescription()},
-			Author:      hit.Author,
-			Comments:    hit.GetPermalink(),
-			Published:   Timestamp("rss", hit.GetCreatedAt()),
-			Permalink:   RSSPermalink{hit.GetPermalink(), "false"},
+			Title:     CDATA{hit.GetTitle()},
+			Link:      hit.GetURL(op.LinkTo),
+			Author:    hit.Author,
+			Comments:  hit.GetPermalink(),
+			Published: Timestamp("rss", hit.GetCreatedAt()),
+			Permalink: RSSPermalink{hit.GetPermalink(), "false"},
 		}
+
+		if op.Description != descriptionDisabledFlag {
+			item.Description = &CDATA{hit.GetDescription()}
+		}
+
 		rss.Items = append(rss.Items, item)
 	}
 

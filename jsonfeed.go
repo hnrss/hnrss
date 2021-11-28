@@ -12,7 +12,7 @@ type JSONFeed struct {
 type JSONFeedItem struct {
 	ID          string `json:"id"`
 	Title       string `json:"title"`
-	ContentHTML string `json:"content_html"`
+	ContentHTML string `json:"content_html,omitempty"`
 	URL         string `json:"url"`
 	ExternalURL string `json:"external_url"`
 	Published   string `json:"date_published"`
@@ -30,12 +30,16 @@ func NewJSONFeed(results *AlgoliaSearchResponse, op *OutputParams) *JSONFeed {
 		item := JSONFeedItem{
 			ID:          hit.GetPermalink(),
 			Title:       hit.GetTitle(),
-			ContentHTML: hit.GetDescription(),
 			URL:         hit.GetURL(op.LinkTo),
 			ExternalURL: hit.GetPermalink(),
 			Published:   Timestamp("jsonfeed", hit.GetCreatedAt()),
 			Author:      hit.Author,
 		}
+
+		if op.Description != descriptionDisabledFlag {
+			item.ContentHTML = hit.GetDescription()
+		}
+
 		j.Items = append(j.Items, item)
 	}
 	return &j

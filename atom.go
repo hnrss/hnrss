@@ -12,13 +12,13 @@ type Atom struct {
 }
 
 type AtomEntry struct {
-	Title     CDATA       `xml:"title"`
-	Links     []AtomLink  `xml:"link"`
-	Author    string      `xml:"author>name"`
-	Content   AtomContent `xml:"content"`
-	Updated   string      `xml:"updated"`
-	Published string      `xml:"published"`
-	ID        string      `xml:"id"`
+	Title     CDATA        `xml:"title"`
+	Links     []AtomLink   `xml:"link"`
+	Author    string       `xml:"author>name"`
+	Content   *AtomContent `xml:"content,omitempty"`
+	Updated   string       `xml:"updated"`
+	Published string       `xml:"published"`
+	ID        string       `xml:"id"`
 }
 
 type AtomContent struct {
@@ -39,7 +39,7 @@ func NewAtom(results *AlgoliaSearchResponse, op *OutputParams) *Atom {
 		Title:   op.Title,
 		Updated: Timestamp("atom", UTCNow()),
 		Links: []AtomLink{
-			AtomLink{op.SelfLink, "self", "application/atom+xml"},
+			{op.SelfLink, "self", "application/atom+xml"},
 		},
 	}
 
@@ -50,11 +50,15 @@ func NewAtom(results *AlgoliaSearchResponse, op *OutputParams) *Atom {
 			Updated:   Timestamp("atom", hit.GetCreatedAt()),
 			Published: Timestamp("atom", hit.GetCreatedAt()),
 			Links: []AtomLink{
-				AtomLink{hit.GetURL(op.LinkTo), "alternate", ""},
+				{hit.GetURL(op.LinkTo), "alternate", ""},
 			},
-			Author:  hit.Author,
-			Content: AtomContent{"html", hit.GetDescription()},
+			Author: hit.Author,
 		}
+
+		if op.Description != descriptionDisabledFlag {
+			entry.Content = &AtomContent{"html", hit.GetDescription()}
+		}
+
 		atom.Entries = append(atom.Entries, entry)
 	}
 

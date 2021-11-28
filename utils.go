@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 const (
@@ -60,6 +61,7 @@ func ParseRequest(c *gin.Context, sp *SearchParams, op *OutputParams) {
 		c.String(http.StatusBadRequest, err.Error())
 		return
 	}
+
 	op.Format = c.GetString("format")
 	op.SelfLink = SiteURL + c.Request.URL.String()
 }

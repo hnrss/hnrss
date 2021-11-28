@@ -1,5 +1,9 @@
 package main
 
+import "fmt"
+
+const hackerNewsAuthorFormatStr = "https://news.ycombinator.com/user?id=%s"
+
 // https://jsonfeed.org/version/1
 type JSONFeed struct {
 	Version     string         `json:"version"`
@@ -10,13 +14,18 @@ type JSONFeed struct {
 }
 
 type JSONFeedItem struct {
-	ID          string `json:"id"`
-	Title       string `json:"title"`
-	ContentHTML string `json:"content_html,omitempty"`
-	URL         string `json:"url"`
-	ExternalURL string `json:"external_url"`
-	Published   string `json:"date_published"`
-	Author      string `json:"author"`
+	ID          string             `json:"id"`
+	Title       string             `json:"title"`
+	ContentHTML string             `json:"content_html,omitempty"`
+	URL         string             `json:"url"`
+	ExternalURL string             `json:"external_url"`
+	Published   string             `json:"date_published"`
+	Author      JSONFeedItemAuthor `json:"author"`
+}
+
+type JSONFeedItemAuthor struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
 }
 
 func NewJSONFeed(results *AlgoliaSearchResponse, op *OutputParams) *JSONFeed {
@@ -33,7 +42,10 @@ func NewJSONFeed(results *AlgoliaSearchResponse, op *OutputParams) *JSONFeed {
 			URL:         hit.GetURL(op.LinkTo),
 			ExternalURL: hit.GetPermalink(),
 			Published:   Timestamp("jsonfeed", hit.GetCreatedAt()),
-			Author:      hit.Author,
+			Author: JSONFeedItemAuthor{
+				Name: hit.Author,
+				URL:  fmt.Sprintf(hackerNewsAuthorFormatStr, hit.Author),
+			},
 		}
 
 		if op.Description != descriptionDisabledFlag {

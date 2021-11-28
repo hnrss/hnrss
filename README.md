@@ -1,12 +1,14 @@
-hnrss — Hacker News RSS
-========================
+# hnrss — Hacker News RSS
+
+[![GoDoc](https://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://pkg.go.dev/github.com/hnrss/hnrss)
+[![Builds](https://img.shields.io/github/checks-status/hnrss/hnrss/main?label=build&style=flat-square)](https://github.com/hnrss/hnrss/actions?query=branch%master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hnrss/hnrss?style=flat-square)](https://goreportcard.com/report/github.com/hnrss/hnrss)
 
 hnrss provides custom, realtime RSS feeds for Hacker News.
 
 The [project page](http://hnrss.org/) explains all available RSS feeds.
 
-Overview
---------
+## Overview
 
 The following feeds are available:
 
@@ -20,15 +22,14 @@ The following feeds are available:
 - **Users** -- New [posts](https://hnrss.org/submitted?id=tokenadult) and [comments](https://hnrss.org/threads?id=tptacek) made by a given user.
 - **Threads** -- Each new comment made [in a given thread](https://hnrss.org/item?id=7864813).
 
-[Hacker News]: https://news.ycombinator.com/
-[Ask HN]: https://hnrss.org/ask
-[Show HN]: https://hnrss.org/show
+[hacker news]: https://news.ycombinator.com/
+[ask hn]: https://hnrss.org/ask
+[show hn]: https://hnrss.org/show
 [polls]: https://hnrss.org/polls
 [jobs]: https://hnrss.org/jobs
 [whoishiring]: https://hnrss.org/whoishiring/jobs
 
-Support
--------
+## Support
 
 While running hnrss is by no means “breaking the bank,” every little
 bit helps for when the monthly hosting bill or domain registration
@@ -38,8 +39,7 @@ much appreciated. Thanks!
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZP9Q7QUNS3QYY)
 
-Credits
--------
+## Credits
 
 hnrss is powered by [Algolia](https://hn.algolia.com/api), the
 [official Hacker News API provider](https://news.ycombinator.com/item?id=7547578).

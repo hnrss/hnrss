@@ -1,12 +1,13 @@
 package main
 
 import (
-	"astuart.co/goq"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 	"strings"
+
+	"astuart.co/goq"
+	"github.com/gin-gonic/gin"
 )
 
 func BestComments(c *gin.Context) {
@@ -37,7 +38,7 @@ func BestComments(c *gin.Context) {
 	sp.Filters = strings.Join(oids, " OR ")
 	sp.Count = strconv.Itoa(len(oids))
 
-	op.Title = fmt.Sprintf("Hacker News: Best Comments")
+	op.Title = "Hacker News: Best Comments"
 	op.Link = "https://news.ycombinator.com/bestcomments"
 
 	Generate(c, &sp, &op)

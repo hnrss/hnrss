@@ -57,9 +57,9 @@ func (hit AlgoliaSearchHit) isSelfPost() bool {
 func (hit AlgoliaSearchHit) GetTitle() string {
 	if hit.isComment() {
 		return fmt.Sprintf("New comment by %s in \"%s\"", hit.Author, html.UnescapeString(hit.StoryTitle))
-	} else {
-		return html.UnescapeString(hit.Title)
 	}
+
+	return html.UnescapeString(hit.Title)
 }
 
 func (hit AlgoliaSearchHit) GetPermalink() string {
@@ -85,7 +85,7 @@ func buildTemplateEngine(name string) *template.Template {
 	return t.Funcs(fm)
 }
 
-func (hit AlgoliaSearchHit) GetDescription() string {
+func (hit AlgoliaSearchHit) GetDescription() (string, error) {
 	var (
 		b bytes.Buffer
 		t = buildTemplateEngine("default")
@@ -112,8 +112,11 @@ func (hit AlgoliaSearchHit) GetDescription() string {
 `))
 	}
 
-	t.Execute(&b, hit)
-	return b.String()
+	if err := t.Execute(&b, hit); err != nil {
+		return "", fmt.Errorf("failed to generate description template: %w", err)
+	}
+
+	return b.String(), nil
 }
 
 func (hit AlgoliaSearchHit) GetCreatedAt() time.Time {

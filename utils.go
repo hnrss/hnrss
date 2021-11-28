@@ -96,13 +96,31 @@ func Generate(c *gin.Context, sp *SearchParams, op *OutputParams) {
 
 	switch op.Format {
 	case "rss":
-		rss := NewRSS(results, op)
+		rss, err := NewRSS(results, op)
+		if err != nil {
+			c.Error(err)
+			c.String(http.StatusInternalServerError, err.Error())
+			return
+		}
+
 		c.XML(http.StatusOK, rss)
 	case "atom":
-		atom := NewAtom(results, op)
+		atom, err := NewAtom(results, op)
+		if err != nil {
+			c.Error(err)
+			c.String(http.StatusInternalServerError, err.Error())
+			return
+		}
+
 		c.XML(http.StatusOK, atom)
 	case "jsonfeed":
-		jsonfeed := NewJSONFeed(results, op)
+		jsonfeed, err := NewJSONFeed(results, op)
+		if err != nil {
+			c.Error(err)
+			c.String(http.StatusInternalServerError, err.Error())
+			return
+		}
+
 		c.JSON(http.StatusOK, jsonfeed)
 	}
 }

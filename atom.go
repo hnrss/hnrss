@@ -32,7 +32,7 @@ type AtomLink struct {
 	Type         string `xml:"type,attr,omitempty"`
 }
 
-func NewAtom(results *AlgoliaSearchResponse, op *OutputParams) *Atom {
+func NewAtom(results *AlgoliaSearchResponse, op *OutputParams) (*Atom, error) {
 	atom := Atom{
 		NS:      NSAtom,
 		ID:      op.SelfLink,
@@ -56,11 +56,19 @@ func NewAtom(results *AlgoliaSearchResponse, op *OutputParams) *Atom {
 		}
 
 		if op.Description != descriptionDisabledFlag {
-			entry.Content = &AtomContent{"html", hit.GetDescription()}
+			desc, err := hit.GetDescription()
+			if err != nil {
+				return nil, err
+			}
+
+			entry.Content = &AtomContent{
+				Type:  "html",
+				Value: desc,
+			}
 		}
 
 		atom.Entries = append(atom.Entries, entry)
 	}
 
-	return &atom
+	return &atom, nil
 }

@@ -28,7 +28,7 @@ type JSONFeedItemAuthor struct {
 	URL  string `json:"url"`
 }
 
-func NewJSONFeed(results *AlgoliaSearchResponse, op *OutputParams) *JSONFeed {
+func NewJSONFeed(results *AlgoliaSearchResponse, op *OutputParams) (*JSONFeed, error) {
 	j := JSONFeed{
 		Version:     "https://jsonfeed.org/version/1",
 		Title:       op.Title,
@@ -49,10 +49,15 @@ func NewJSONFeed(results *AlgoliaSearchResponse, op *OutputParams) *JSONFeed {
 		}
 
 		if op.Description != descriptionDisabledFlag {
-			item.ContentHTML = hit.GetDescription()
+			desc, err := hit.GetDescription()
+			if err != nil {
+				return nil, err
+			}
+
+			item.ContentHTML = desc
 		}
 
 		j.Items = append(j.Items, item)
 	}
-	return &j
+	return &j, nil
 }

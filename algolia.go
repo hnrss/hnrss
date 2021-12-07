@@ -85,7 +85,7 @@ func buildTemplateEngine(name string) *template.Template {
 	return t.Funcs(fm)
 }
 
-func (hit AlgoliaSearchHit) GetDescription() string {
+func (hit AlgoliaSearchHit) GetDescription() (string, error) {
 	var (
 		b bytes.Buffer
 		t = buildTemplateEngine("default")
@@ -112,8 +112,12 @@ func (hit AlgoliaSearchHit) GetDescription() string {
 `))
 	}
 
-	t.Execute(&b, hit)
-	return b.String()
+	err := t.Execute(&b, hit)
+	if err != nil {
+		return "", fmt.Errorf("failed to generate description template: %w", err)
+	}
+
+	return b.String(), nil
 }
 
 func (hit AlgoliaSearchHit) GetCreatedAt() time.Time {

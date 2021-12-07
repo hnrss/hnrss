@@ -33,7 +33,7 @@ type RSSItem struct {
 	Permalink   RSSPermalink `xml:"guid"`
 }
 
-func NewRSS(results *AlgoliaSearchResponse, op *OutputParams) *RSS {
+func NewRSS(results *AlgoliaSearchResponse, op *OutputParams) (*RSS, error) {
 	rss := RSS{
 		Version:       "2.0",
 		NSAtom:        NSAtom,
@@ -58,11 +58,18 @@ func NewRSS(results *AlgoliaSearchResponse, op *OutputParams) *RSS {
 		}
 
 		if op.Description != descriptionDisabledFlag {
-			item.Description = &CDATA{hit.GetDescription()}
+			desc, err := hit.GetDescription()
+			if err != nil {
+				return nil, err
+			}
+
+			item.Description = &CDATA{
+				Value: desc,
+			}
 		}
 
 		rss.Items = append(rss.Items, item)
 	}
 
-	return &rss
+	return &rss, nil
 }

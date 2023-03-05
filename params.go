@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
 )
 
 const (
@@ -40,6 +41,14 @@ func (sp *SearchParams) numericFilters() string {
 	}
 	if sp.Comments != "" {
 		filters = append(filters, "num_comments>="+sp.Comments)
+	}
+	if sp.Tags == "front_page" {
+		// For /frontpage requests, limit to stories created within the past week
+		//
+		// This is a workaround to avoid showing ancient stories that never lost the `front_page` tag
+		timestamp := time.Now().Unix() - 7*24*60*60
+		createdAt := strconv.FormatInt(timestamp, 10)
+		filters = append(filters, "created_at_i>="+createdAt)
 	}
 	return strings.Join(filters, ",")
 }

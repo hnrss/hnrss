@@ -1,6 +1,6 @@
 module github.com/hnrss/hnrss
 
-go 1.20
+go 1.19
 
 require (
 	astuart.co/goq v1.0.0

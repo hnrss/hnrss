@@ -41,6 +41,7 @@ func main() {
 	registerEndpoint(r, "/replies", Replies)
 	registerEndpoint(r, "/item", Item)
 	registerEndpoint(r, "/favorites", Favorites)
+	registerEndpoint(r, "/highlights", Highlights)
 	registerEndpoint(r, "/bestcomments", BestComments)
 	registerEndpoint(r, "/classic", Special("https://news.ycombinator.com/classic", "Hacker News: Classic"))
 	registerEndpoint(r, "/best", Special("https://news.ycombinator.com/best", "Hacker News: Best"))

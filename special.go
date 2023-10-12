@@ -1,12 +1,13 @@
 package main
 
 import (
-	"astuart.co/goq"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 	"strings"
+
+	"astuart.co/goq"
+	"github.com/gin-gonic/gin"
 )
 
 func Special(url, title string) gin.HandlerFunc {

@@ -117,7 +117,7 @@ func (hit AlgoliaSearchHit) GetDescription() string {
 }
 
 func (hit AlgoliaSearchHit) GetCreatedAt() time.Time {
-	if rv, err := time.Parse("2006-01-02T15:04:05.000Z", hit.CreatedAt); err == nil {
+	if rv, err := time.Parse("2006-01-02T15:04:05Z", hit.CreatedAt); err == nil {
 		return rv
 	} else {
 		return UTCNow()

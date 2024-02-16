@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	bindAddr    = flag.String("bind", "127.0.0.1:9000", "HOST:PORT")
+	bindAddr    = flag.String("bind", "0.0.0.0:9000", "HOST:PORT")
 	buildString string
 )
 
